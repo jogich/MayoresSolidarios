@@ -273,15 +273,9 @@ class User implements UserInterface
         return $this->address;
     }
 
-    public function setRoles(array $roles)
-    {    
-        $this->roles = $roles;
-        return $this;
-    }
-
     public function getRoles()
     {
-        return $this->roles;
+        return array('ROLE_USER');
     }
 
     public function getSalt()

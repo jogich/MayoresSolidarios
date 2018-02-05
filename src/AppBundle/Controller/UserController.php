@@ -6,24 +6,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
-use AppBundle\Entity\UserType;
+use AppBundle\Form\UserType;
+use Doctrine\ORM\EntityManager;
 
 class UserController extends Controller
 {
     /**
-     * @Route("/", name="")
+     * @Route("/user/", name="user")
      */
     public function indexAction()
     {
-        
-    }
+        $em = $this->getDoctrine()->getManager();
 
-    /**
-     * @Route("/user/", name="")
-     */
-    public function showAction()
-    {
+        $users = $em->getRepository('AppBundle:User')->findAll();
 
+        return $this->render('user/index.html.twig', array('users' => $users));
     }
 
     /**
