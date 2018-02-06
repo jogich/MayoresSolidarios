@@ -390,3 +390,13 @@ header {
     width: 100%;
 }
 }
+
+/* USER */
+#icons {
+    font-size: 20px;
+    margin-right: 25px;
+}
+
+thead th, tbody td {
+    text-align: center;
+}
