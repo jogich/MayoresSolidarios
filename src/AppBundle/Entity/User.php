@@ -41,11 +41,6 @@ class User implements UserInterface
     private $surname;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $username;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
@@ -65,7 +60,7 @@ class User implements UserInterface
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthday", type="datetimetz")
+     * @ORM\Column(name="birthday", type="datetime")
      */
     private $birthday;
 
@@ -83,10 +78,10 @@ class User implements UserInterface
      */
     private $address;
 
-    /*
-     * @ORM\Column(name="roles", type="json_array");
+    /**
+     * @ORM\Column(type="json_array")
      */
-    private $roles;
+    private $roles = array();
 
 
     /**
@@ -149,14 +144,9 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        return $this->username;
+        return $this->email;
     }
 
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-    
     /**
      * Set email
      *
@@ -273,9 +263,16 @@ class User implements UserInterface
         return $this->address;
     }
 
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return $this->roles;
     }
 
     public function getSalt()

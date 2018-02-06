@@ -6,11 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UserType extends AbstractType
 {
@@ -23,8 +22,6 @@ class UserType extends AbstractType
                 ['label' => 'Nombre'])
                 ->add('surname', TextType::class,
                     ['label' => 'Apellidos'])
-                ->add('username', TextType::class,
-                    ['label' => 'Usuario'])
                 ->add('email', EmailType::class,
                     ['label' => 'Correo electrónico'])
                 ->add('plainPassword', RepeatedType::class,
@@ -34,8 +31,15 @@ class UserType extends AbstractType
                     'second_options' => ['label' => 'Confirmar contraseña'],
                     'required' => false
                 ])
-                ->add('birthday', DateTimeType::class,
-                    ['label' => 'Fecha de nacimiento'])
+                ->add('birthday', DateType::class,
+                    [
+                        'label' => 'Fecha de nacimiento',
+                        'placeholder' => array(
+                            'day' => 'Día', 'month' => 'Mes', 'year' => 'Año'
+                        ),
+                        'years' => range(1918, 2018),
+                        'format' => 'dd-MM-yyyy'
+                    ])
                 ->add('phoneNumber', TextType::class,
                     ['label' => 'Número de teléfono'])
                 ->add('address', TextType::class,

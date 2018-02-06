@@ -1,0 +1,37 @@
+{% block container %}
+    {{ form_start(user_edit) }}
+    <div>
+        {{ form_label(user_edit.name) }}
+        {{ form_widget(user_edit.name) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.surname) }}
+        {{ form_widget(user_edit.surname) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.email) }}
+        {{ form_widget(user_edit.email) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.address) }}
+        {{ form_widget(user_edit.address) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.plainPassword.first) }}
+        {{ form_widget(user_edit.plainPassword.first) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.plainPassword.second) }}
+        {{ form_widget(user_edit.plainPassword.second) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.birthday) }}
+        {{ form_widget(user_edit.birthday) }}
+    </div>
+    <div>
+        {{ form_label(user_edit.phoneNumber) }}
+        {{ form_widget(user_edit.phoneNumber) }}
+    </div>
+    <button type="submit">EDITAR</button>
+    {{ form_end(user_edit) }}
+{% endblock %}
