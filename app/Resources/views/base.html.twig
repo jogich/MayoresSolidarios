@@ -66,11 +66,14 @@
                                         <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <div class="navbar-content" style="padding-left:15px;">
+                                            <div class="navbar-content" style="margin-left:15px;">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="user"></a><br>
                                                 <span>{% block userName %}{% endblock %}</span>
                                                 <p class="text-muted small">
+                                                  <div style="width:100px;">
                                                     {% block email %}{% endblock %}
+                                                  </div>
+
                                                 </p>
                                                 <div class="divider"></div>
 
