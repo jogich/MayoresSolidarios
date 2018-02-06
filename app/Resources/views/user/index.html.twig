@@ -1,5 +1,6 @@
+{% extends 'base.html.twig' %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset('datatables/datatables-plugins/dataTables.bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('datatables/datatables-responsive/dataTables.responsive.css') }}">
 {% endblock %}
@@ -12,6 +13,7 @@
                 <th>Apellidos</th>
                 <th>Correo electrónico</th>
                 <th>Fecha de nacimiento</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,14 +24,14 @@
                 <td>{{ user.surname }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.birthday | date('d/m/Y') }}</td>
+                <td></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 {% endblock %}
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    {{ parent() }}
     <script type="text/javascript" src="{{ asset('datatables/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('datatables/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('datatables/datatables-responsive/dataTables.responsive.js') }}"></script>
