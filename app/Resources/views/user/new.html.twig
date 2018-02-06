@@ -1,0 +1,37 @@
+{% block container %}
+{{ form_start(user_new) }}
+    <div>
+        {{ form_label(user_new.name) }}
+        {{ form_widget(user_new.name) }}
+    </div>
+    <div>
+        {{ form_label(user_new.surname) }}
+        {{ form_widget(user_new.surname) }}
+    </div>
+    <div>
+        {{ form_label(user_new.email) }}
+        {{ form_widget(user_new.email) }}
+    </div>
+    <div>
+        {{ form_label(user_new.address) }}
+        {{ form_widget(user_new.address) }}
+    </div>
+    <div>
+        {{ form_label(user_new.plainPassword.first) }}
+        {{ form_widget(user_new.plainPassword.first) }}
+    </div>
+    <div>
+        {{ form_label(user_new.plainPassword.second) }}
+        {{ form_widget(user_new.plainPassword.second) }}
+    </div>
+    <div>
+        {{ form_label(user_new.birthday) }}
+        {{ form_widget(user_new.birthday) }}
+    </div>
+    <div>
+        {{ form_label(user_new.phoneNumber) }}
+        {{ form_widget(user_new.phoneNumber) }}
+    </div>
+    <button type="submit">REGISTRARSE</button>
+{{ form_end(user_new) }}
+{% endblock %}
