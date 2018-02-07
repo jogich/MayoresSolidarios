@@ -86,4 +86,16 @@ class UserController extends Controller
 
         return $this->redirectToRoute('user');
     }
+
+    /**
+     * @Route("/user/{id}/profile/", name="user-profile")
+     */
+    public function profileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->findOneById($id);
+
+        return $this->render('user/profile.html.twig', array('user_info' => $user));
+    }
 }

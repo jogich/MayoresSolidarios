@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+    <div>Nombre: {{ user_info.name }}</div>
+    <div>Apellidos: {{ user_info.surname }}</div>
+    <div>Correo electrónico: {{ user_info.email }}</div>
+    <div>Dirección: {{ user_info.address }}</div>
+
+    <div><a href="{{ path('user') }}" class="btn btn-primary">Volver</a></div>
+{% endblock %}
