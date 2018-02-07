@@ -43,25 +43,18 @@ class Project
     private $address;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="necessaryBudget", type="integer", length=255)
+     * @ORM\Column(name="date_create", type="datetimetz", nullable=true)
      */
-    private $necessaryBudget;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="budgetObtained", type="integer")
-     */
-    private $budgetObtained;
+    private $date_create;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expirationDate", type="datetimetz", nullable=true)
+     * @ORM\Column(name="date_expiration", type="datetimetz", nullable=true)
      */
-    private $expirationDate;
+    private $date_expiration;
 
 
     /**
@@ -147,74 +140,50 @@ class Project
     }
 
     /**
-     * Set necessaryBudget
+     * Set dateCreate
      *
-     * @param string $necessaryBudget
+     * @param \DateTime $dateCreate
      *
      * @return Project
      */
-    public function setNecessaryBudget($necessaryBudget)
+    public function setDateCreate($dateCreate)
     {
-        $this->necessaryBudget = $necessaryBudget;
-
+        $this->date_create = $dateCreate;
+    
         return $this;
     }
 
     /**
-     * Get necessaryBudget
-     *
-     * @return string
-     */
-    public function getNecessaryBudget()
-    {
-        return $this->necessaryBudget;
-    }
-
-    /**
-     * Set budgetObtained
-     *
-     * @param integer $budgetObtained
-     *
-     * @return Project
-     */
-    public function setBudgetObtained($budgetObtained)
-    {
-        $this->budgetObtained = $budgetObtained;
-
-        return $this;
-    }
-
-    /**
-     * Get budgetObtained
-     *
-     * @return integer
-     */
-    public function getBudgetObtained()
-    {
-        return $this->budgetObtained;
-    }
-
-    /**
-     * Set expirationDate
-     *
-     * @param \DateTime $expirationDate
-     *
-     * @return Project
-     */
-    public function setExpirationDate($expirationDate)
-    {
-        $this->expirationDate = $expirationDate;
-
-        return $this;
-    }
-
-    /**
-     * Get expirationDate
+     * Get dateCreate
      *
      * @return \DateTime
      */
-    public function getExpirationDate()
+    public function getDateCreate()
     {
-        return $this->expirationDate;
+        return $this->date_create;
+    }
+
+    /**
+     * Set dateExpiration
+     *
+     * @param \DateTime $dateExpiration
+     *
+     * @return Project
+     */
+    public function setDateExpiration($dateExpiration)
+    {
+        $this->date_expiration = $dateExpiration;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateExpiration
+     *
+     * @return \DateTime
+     */
+    public function getDateExpiration()
+    {
+        return $this->date_expiration;
     }
 }
