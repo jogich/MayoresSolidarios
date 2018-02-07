@@ -5,34 +5,27 @@
 {% endif %}
 
 <form action="{{ path('login') }}" method="post" class="form-horizontal">
-  <div class="form-group">
-    <div class="cols-sm-10">
-      <div class="input-group">
-          <input type="text" id="username" name="_username"  class="form-control" placeholder="Usuario"/>
-      </div>
+    <div class="form-group">
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <input type="text" id="username" name="_username"  class="form-control" placeholder="Correo electrónico"/>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="cols-sm-10">
-      <div class="input-group">
-          <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña"/>
-      </div>
+    <div class="form-group">
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña"/>
+            </div>
+        </div>
     </div>
-  </div>
 
-
-    {#
-        If you want to control the URL the user
-        is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
-    
     <div class="login-register">
-        <button class="btn btn-primary btn-lg btn-block login-button" type="submit">login</button>
-     </div>
+        <button class="btn btn-primary btn-lg btn-block login-button" type="submit">Entrar</button>
+    </div>
      <br>
      <div class="login-register">
-             <a href="index.php">Registrate YA!</a>
+         <p>¿No tienes cuenta? <a href="">Regístrate!</a></p>
       </div>
 </form>
 {% endblock %}

@@ -47,12 +47,15 @@
                             </div>
                         </nav>
                     </div>
-                    <div class="col-md-5 pull-left">
-                        <h3>Bienvenido Usuario {% block userWelcome %}{% endblock %}</h3>
+                    <div class="col-md-5">
+
                     </div>
                     <div class="col-md-6">
                         <div class="header-rightside">
                             <ul class="list-inline header-top pull-right" >
+                                {% if app.user %}
+                                <li><p class="text-muted">Bienvenido {{ app.user.username }}</p></li>
+                                {% endif %}
                                 <li>
                                     <!-- Notificaciones -->
                                     <a href="#" class="icon-info">
@@ -70,9 +73,7 @@
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="user"></a><br>
                                                 <span>{% block userName %}{% endblock %}</span>
                                                 <p class="text-muted small">
-                                                  <div style="width:100px;">
-                                                    {% block email %}{% endblock %}
-                                                  </div>
+                                                  <div style="width:100px;"></div>
 
                                                 </p>
                                                 <div class="divider"></div>

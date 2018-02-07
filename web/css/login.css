@@ -7,7 +7,9 @@ h1.title {
 	font-family: 'Passion One', cursive;
 	font-weight: 400;
 }
-
+a,p{
+    font-size: 16px;
+}
 hr{
 	width: 10%;
 	color: #fff;
