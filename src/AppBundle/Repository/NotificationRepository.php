@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\EntityManager;
+
 /**
  * NotificationRepository
  *
@@ -10,4 +12,13 @@ namespace AppBundle\Repository;
  */
 class NotificationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countNotifications()
+    {
+       $query = $this->getEntityManager()->getRepository('AppBundle:Notification')->findAll();
+
+       $allNotifications = count($query);
+
+       return $allNotifications;
+
+    }
 }

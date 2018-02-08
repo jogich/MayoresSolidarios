@@ -21,7 +21,7 @@ class NotificationController extends Controller
 
         $notification = $repository->findAll();
 
-        return $this->render('notification/index.html.twig', array('notification' => $notification));
+        //return $this->render('notification/index.html.twig', array('notification' => $notification));
     }
 
 
@@ -57,8 +57,10 @@ class NotificationController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Notification');
 
+
         $notification = $repository->findOneById($id);
         $form = $this->createForm(NotificationType::class, $notification);
+
 
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted())
