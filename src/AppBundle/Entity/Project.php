@@ -29,6 +29,13 @@ class Project
     private $title;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="categories", type="array", length=255, nullable=true)
+     */
+    private $categories;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
@@ -45,14 +52,14 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_create", type="datetimetz", nullable=true)
+     * @ORM\Column(name="date_create", type="datetime", nullable=true)
      */
     private $date_create;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_expiration", type="datetimetz", nullable=true)
+     * @ORM\Column(name="date_expiration", type="datetime", nullable=true)
      */
     private $date_expiration;
 
@@ -90,7 +97,7 @@ class Project
     {
         return $this->title;
     }
-
+    
     /**
      * Set description
      *
@@ -149,7 +156,7 @@ class Project
     public function setDateCreate($dateCreate)
     {
         $this->date_create = $dateCreate;
-    
+
         return $this;
     }
 
@@ -173,7 +180,7 @@ class Project
     public function setDateExpiration($dateExpiration)
     {
         $this->date_expiration = $dateExpiration;
-    
+
         return $this;
     }
 
@@ -185,5 +192,29 @@ class Project
     public function getDateExpiration()
     {
         return $this->date_expiration;
+    }
+
+    /**
+     * Set categories
+     *
+     * @param array $categories
+     *
+     * @return Project
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return array
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
