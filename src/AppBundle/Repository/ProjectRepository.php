@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countProjects()
+    {
+       $query = $this->getEntityManager()->getRepository('AppBundle:Project')->findAll();
+
+       $allProjects = count($query);
+
+       return $allProjects;
+    }
 }

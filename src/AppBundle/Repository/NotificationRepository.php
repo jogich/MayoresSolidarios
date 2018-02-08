@@ -19,6 +19,5 @@ class NotificationRepository extends \Doctrine\ORM\EntityRepository
        $allNotifications = count($query);
 
        return $allNotifications;
-
     }
 }

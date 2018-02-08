@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countUsers()
+    {
+       $query = $this->getEntityManager()->getRepository('AppBundle:User')->findAll();
+
+       $allUsers = count($query);
+
+       return $allUsers;
+    }
 }
