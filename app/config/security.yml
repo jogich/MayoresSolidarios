@@ -37,4 +37,8 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
     access_control:
+        - { path: ^/landing, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login , roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # si desactivamos esto, pedirá contraseña para entrar a toda la página
+        #- { path: ^/ , roles: ROLE_ADMIN }

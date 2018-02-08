@@ -88,13 +88,13 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/{id}/profile/", name="user-profile")
+     * @Route("/user/{email}/profile/", name="user-profile")
      */
-    public function profileAction($id)
+    public function profileAction($email)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $em->getRepository('AppBundle:User')->findOneById($id);
+        $user = $em->getRepository('AppBundle:User')->findOneByEmail($email);
 
         return $this->render('user/profile.html.twig', array('user_info' => $user));
     }

@@ -30,7 +30,7 @@
                     <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Proyectos</span></a></li>
                     {% elseif is_granted('ROLE_USER') %}
                     <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
-                    <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
+                    <li><a href=""><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -82,7 +82,7 @@
                                                 </p>
                                                 <div class="divider"></div>
 
-                                                <a href="#" class="btn btn-info" style="margin-bottom:-15px;">Perfil</a>
+                                                <a href="{{ path('user-profile', { 'email': app.user.username }) }}" class="btn btn-info" style="margin-bottom:-15px;">Perfil</a>
                                                 <hr>
                                                 <a href="{{ path('logout') }}" class="btn btn-danger" style="margin-top:-15px;">Salir</a>
                                             </div>

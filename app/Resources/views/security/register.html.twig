@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    {% endblock %}
+</head>
+<body>
+<div class="container" >
+    <div class="row main" >
+        <div class="main-register main-center" style="position:relative; top:150px; border-radius:5px; width:650px;">
+            <h2>Registro</h2>
+            {% block container %}
+                {{ form_start(user_new) }}
+                <div style="border-top:2px solid #e7e2e2; padding: 5px;">
+                    <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 ">
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.name) }}
+                                    {{ form_widget(user_new.name, { 'attr': {'class': 'form-control', 'placeholder': 'Nombre'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.surname) }}
+                                    {{ form_widget(user_new.surname, { 'attr': {'class': 'form-control', 'placeholder': 'Apellidos'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.plainPassword.first) }}
+                                    {{ form_widget(user_new.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Contraseña'} }) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.plainPassword.second) }}
+                                    {{ form_widget(user_new.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirmar Contraseña'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 col-md-offset-1" style="padding-left:-5px;">
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.email) }}
+                                    {{ form_widget(user_new.email, { 'attr': {'class': 'form-control',  'placeholder': 'Correo Electrónico'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.phoneNumber) }}
+                                    {{ form_widget(user_new.phoneNumber, { 'attr': {'class': 'form-control',  'placeholder': 'Número de Teléfono'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.address) }}
+                                    {{ form_widget(user_new.address, { 'attr': {'class': 'form-control',  'placeholder': 'Dirección'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    {{ form_label(user_new.birthday) }}
+                                    {{ form_widget(user_new.birthday) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="padding-top:5px;">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Registrarse</button>
+                </div>
+                {{ form_end(user_new) }}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/plugin.js') }}"></script>
+{% endblock %}
+</body>
+</html>
