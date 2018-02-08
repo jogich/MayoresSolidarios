@@ -26,8 +26,8 @@ security:
                 login_path: login
                 check_path: login
             logout:
-                path: /logout
-                target: /
+                path: logout
+                target: login
 
             # activate different ways to authenticate
 
