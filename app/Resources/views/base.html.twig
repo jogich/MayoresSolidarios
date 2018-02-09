@@ -19,8 +19,8 @@
         <!-- barra de navegacion -->
         <nav class="col-md-2 col-sm-1 hidden-xs display-table-cell  box" id="navigation">
             <div class="logo">
-                <a href="{{ path('homepage') }}"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="merkery_logo" class="hidden-xs hidden-sm">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                <a href="{{ path('homepage') }}"><img src="{{ asset('img/LogoMS.png') }}" alt="merkery_logo" class="hidden-xs hidden-sm">
+                    <img src="" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
                 </a>
             </div>
             <div class="navi">
@@ -64,7 +64,7 @@
                                     <!-- Notificaciones -->
                                     <a href="#" class="icon-info">
                                         <i class="fa fa-bell" aria-hidden="true"></i>
-                                        <span class="label label-primary">1</span><!-- Aqui seleccionamos el numero de notificaciones que tiene el usuario -->
+                                        <span class="label label-primary">{% block count_notification %}{% endblock %}</span><!-- Aqui seleccionamos el numero de notificaciones que tiene el usuario -->
                                     </a>
                                 </li>
                                 <!-- dropdown de perfil de usuario -->
