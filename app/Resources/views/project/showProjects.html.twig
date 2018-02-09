@@ -1,0 +1,51 @@
+{% extends 'base2.html.twig' %}
+{% block container %}
+<style>
+div.gallery-project {
+    margin: 5px;
+    border: 1px solid #d4d9e3;
+    float: left;
+    width: 90%;
+    background-color: #ffffff;
+}
+
+div.gallery-project:hover {
+    border: 1px solid #6ac8ba;
+}
+
+div.gallery-project img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc-project {
+    padding: 15px;
+    text-align: center;
+}
+
+</style>
+  <div class="row">
+    {% for row in projects %}
+      <a href="#">
+        <article class="color1contenido col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ">
+          <div class="gallery-project">
+            <img src="http://conceptodefinicion.de/wp-content/uploads/2016/03/Fabrica.jpg" alt="Description image" width="300" height="200">
+            <div class="desc-project">{{ row.title }}</div>
+            <div class="desc-project">{{ row.description }}</div>
+          </div>
+        </article>
+      </a>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <article class="col-md-offset-5 col-sm-offset-5  col-lg-offset-5 col-xs-offset-4">
+      <ul class="pagination pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+    </article>
+  </div>
+{% endblock %}

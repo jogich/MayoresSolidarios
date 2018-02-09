@@ -25,6 +25,18 @@ class ProjectController extends Controller
     }
 
     /**
+     * @Route("/showProjects/", name="show-projects")
+     */
+    public function showProjectsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('AppBundle:Project')->findAll();
+
+        return $this->render('project/showProjects.html.twig', array('projects' => $project));
+    }
+
+    /**
      * @Route("/project/new/", name="project-new")
      */
     public function newAction(Request $request)
