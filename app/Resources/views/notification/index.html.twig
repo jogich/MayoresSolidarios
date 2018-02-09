@@ -1,0 +1,17 @@
+{% extends 'base2.html.twig' %}
+{% block container %}
+<div class="row">
+  {% for row in notification %}
+    <div class="gallery-notification">
+
+      <div class="desc-notification col-md-9 col-xs-9 col-sm-9">
+        <h4 class="desc-notification">{{ row.title }}</h4>
+        <hr class="gallery-notification">
+        <p class="desc-notification" style="text-align: left;">{{ row.message }}</p>
+      </div>
+      <div class="delete-notification col-md-1 col-xs-1 col-sm-1">
+         <a href="{{ path('notification-delete', {'id':  row.id }) }}"> <i class="glyphicon glyphicon-trash"></i></a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
