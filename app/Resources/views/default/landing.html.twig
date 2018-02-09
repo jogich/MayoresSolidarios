@@ -1,0 +1,273 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+  <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
+  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <!-- Redes Sociales -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+   <nav class="navbar navbar-default navbar-fixed-top" data-aos="fade-down" data-aos-duration="2600" data-aos-once="true" >
+        <div class="container-fluid">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img class="visible-md visible-sm visible-lg"src="{{ asset('img/LogoMS1.png') }}" alt="" id=LogoFooter> <img class="visible-xs"src="./img/LogoMS1.png" alt="" width="40px" height="30px"></a>
+          </div>
+          <div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#aboutUs">¿Quiénes Somos?</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#team">Equipo</a></li>
+                <li><a href="{{ path('homepage') }}">Plataforma</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div style="width:100%; height:50px; background-color:white;">
+      </div>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">Ayudamos a crear una sociedad más colaborativa.</h1>
+      <p class="lead"><!--INTRODUCIR FOTO DE MAYORES SOLIDARIOS AQUÍ--></p>
+    </div>
+  </div>
+
+  <section id="aboutUs" class="container-fluid">
+      <h2 class="section-heading text-uppercase">¿Quiénes somos?</h2>
+    <p>Esta web está destinada a la creación de cooperativas para colaborar en una sociedad más justa.</p>
+    <p>A continuación explicamos el funcionamiento de una forma sencilla para poder entender un poco mejor el comportamiento de la web.</p>
+  </section>
+  <section id="services" class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Servicios</h2>
+            <!-- <h3 class="section-subheading text-muted">Te explicamos como funcionamos.</h3> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="timeline">
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>1.Regístrate.</h4>
+                    <h4 class="subheading">Entra en nuestra página.</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Al entrar tendrás que registrarte o colocar tus credenciales, empieza la aventura. Participa en nuestro proyecto.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>2.Participa.</h4>
+                    <h4 class="subheading">Esto empieza a moverse.</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Busca tu proyecto ideal, tenemos proyectos del ámbito sanitario, social, educativo... busca el proyecto que más te guste y únete.</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>3. Ya te has unido. Bienvenido a la colaboración.</h4>
+                    <h4 class="subheading">¡Felicidades!.</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Ya perteneces a un proyecto, selecciona el perfil que deseas desempeñar en tu proyecto y disfruta de la experiencia junto a otras personas</p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>4.Administra tu perfil</h4>
+                    <h4 class="subheading">Puedes personalizar tu perfil con tus datos</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Ya te hemos puesto en contacto con personas con tus mismos intereses, ahora puedes personalizar tu perfil: nombre, edad, foto...</p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <h4>¡Sé Parte
+                    <br>De Nuestra
+                    <br>Historia!</h4>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+  </section>
+  <section id="team" class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Nuestro increíble equipo</h2>
+            <h3 class="section-subheading text-muted">Estas son las personas que han hecho posible este proyecto, conócenos.</h3>
+          </div>
+        </div>
+        <div class="row">
+          <article class="col-sm-4">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="https://thumbs.dreamstime.com/b/persona-casual-del-retrato-masculino-del-avatar-del-icono-del-perfil-46846371.jpg" alt="">
+              <h4>Kay Garland</h4>
+              <p class="text-muted">Lead Designer</p>
+              <ul class="list-inline social-buttons">
+                <!-- <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li> -->
+              </ul>
+            </div>
+          </article>
+          <article class="col-sm-4">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="https://thumbs.dreamstime.com/b/persona-casual-del-retrato-masculino-del-avatar-del-icono-del-perfil-46846371.jpg" alt="">
+              <h4>Larry Parker</h4>
+              <p class="text-muted">Lead Marketer</p>
+              <ul class="list-inline social-buttons">
+                <!-- <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li> -->
+              </ul>
+            </div>
+          </article>
+          <article class="col-sm-4">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="https://thumbs.dreamstime.com/b/persona-casual-del-retrato-masculino-del-avatar-del-icono-del-perfil-46846371.jpg" alt="">
+              <h4>Diana Pertersen</h4>
+              <p class="text-muted">Lead Developer</p>
+              <ul class="list-inline social-buttons">
+                <!-- <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li> -->
+              </ul>
+            </div>
+          </article>
+        </div>
+        <!-- <div class="row">
+          <article class="col-lg-8 mx-auto text-center">
+            <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+          </article>
+        </div> -->
+  </section>
+  <footer class="container-fluid">
+    <div class="row">
+      <article class="col-md-4 col-sm-4 col-lg-4 col-xs-6 border-footer">
+        <img src="{{ asset('img/LogoMS1.png') }}" alt="" id=LogoFooter>
+        <!-- <h3>Company<span>logo</span></h3> -->
+        <p class="footer-links">
+          <a href="#">Home</a>
+          ·
+
+          ·
+
+          ·
+          <a href="#">About</a>
+          ·
+
+          ·
+          <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name">Cooperativas Solidarias &copy; 2018</p>
+      </article>
+
+      <article class="col-md-4 col-sm-4 col-lg-4 col-xs-6 border-footer" style="padding-top:-15px">
+        <div>
+          <!-- <i class="fa fa-map-marker"></i> -->
+          <p><span>21 Revolution Street</span> Paris, France</p>
+        </div>
+        <div>
+          <!-- <i class="fa fa-phone"></i> -->
+          <p>+1 555 123456</p>
+        </div>
+        <div>
+          <!-- <i class="fa fa-envelope"></i> -->
+          <p><a href="mailto:support@company.com">support@company.com</a></p>
+        </div>
+      </article>
+
+      <hr class="visible-xs">
+      <article class="col-md-4 col-sm-4 col-lg-4 col-xs-12 ">
+        <p class="footer-company-about">
+          <span>About the company</span>
+          <!--METER REDES SOCIALES AQUÍ-->
+          Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+        </p>
+        <!-- <div class="footer-icons">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+
+        </div> -->
+      </article>
+    </div>
+  </footer>
+  <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('bootstrap/js/plugin.js') }}"></script>
+</body>
+</html>

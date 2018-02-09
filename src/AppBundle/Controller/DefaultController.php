@@ -22,4 +22,12 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', array('count_Notification' => $notification, 'count_Users' => $test));
     }
 
+    /**
+     * @Route("/landing", name="landing")
+     */
+    public function landingsAction()
+    {
+        return $this->render('default\landing.html.twig');
+    }
+
 }
