@@ -38,7 +38,7 @@ class Notification
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_create", type="datetimetz", nullable=true)
+     * @ORM\Column(name="date_create", type="datetime", nullable=true)
      */
     private $date_create;
 

@@ -82,7 +82,7 @@
                                                 </p>
                                                 <div class="divider"></div>
 
-                                                <a href="{{ path('user-profile', { 'email': app.user.username }) }}" class="btn btn-info" style="margin-bottom:-15px;">Perfil</a>
+                                                {% if app.user %}<a href="{{ path('user-profile', { 'email': app.user.username }) }}" class="btn btn-info" style="margin-bottom:-15px;">Perfil</a>{% endif %}
                                                 <hr>
                                                 <a href="{{ path('logout') }}" class="btn btn-danger" style="margin-top:-15px;">Salir</a>
                                             </div>

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Project
  *
- * @ORM\Table(name="Project")
+ * @ORM\Table(name="project")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  */
 class Project
@@ -45,14 +45,14 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_create", type="datetimetz", nullable=true)
+     * @ORM\Column(name="date_create", type="datetime", nullable=true)
      */
     private $date_create;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_expiration", type="datetimetz", nullable=true)
+     * @ORM\Column(name="date_expiration", type="datetime", nullable=true)
      */
     private $date_expiration;
 
