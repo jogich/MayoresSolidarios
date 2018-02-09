@@ -8,7 +8,10 @@ h1.title {
   font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 }
-
+.label-control{
+  text-align: left;
+  width: 100%;
+}
 hr{
 	width: 10%;
 	color: #fff;
@@ -19,9 +22,6 @@ hr{
 .form-group{
 	margin-bottom: 15px;
 
-}
-.form-control{
-  text-align: center;
 }
 label{
 	margin-bottom: 15px;
@@ -57,8 +57,16 @@ input::-webkit-input-placeholder {
   width: 100%;
 
 }
-.login-button{
-	margin-top: 5px;
+.register-button {
+  margin-left: 120px;
+  margin-top: 50px;
+  width: 300px;
+}
+.register-button2 {
+  position: relative;
+  top: 15px;
+  left:-120px;
+  width: 300px;
 }
 
 .login-register{
