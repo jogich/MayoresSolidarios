@@ -1,29 +1,5 @@
 {% extends 'base2.html.twig' %}
 {% block container %}
-<style>
-div.gallery-project {
-    margin: 5px;
-    border: 1px solid #d4d9e3;
-    float: left;
-    width: 90%;
-    background-color: #ffffff;
-}
-
-div.gallery-project:hover {
-    border: 1px solid #6ac8ba;
-}
-
-div.gallery-project img {
-    width: 100%;
-    height: auto;
-}
-
-div.desc-project {
-    padding: 15px;
-    text-align: center;
-}
-
-</style>
   <div class="row">
     {% for row in projects %}
       <a href="#">
