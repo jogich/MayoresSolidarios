@@ -1,9 +1,111 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 {% block container %}
-    <div>Nombre: {{ user_info.name }}</div>
-    <div>Apellidos: {{ user_info.surname }}</div>
-    <div>Correo electrónico: {{ user_info.email }}</div>
-    <div>Dirección: {{ user_info.address }}</div>
+<style media="screen">
+.user-row {
+  margin-bottom: 14px;
+}
 
-    <div><a href="{{ path('user') }}" class="btn btn-primary">Volver</a></div>
+.user-row:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-user {
+  margin: 13px 0;
+  padding: 5px;
+  height: 100%;
+}
+
+.dropdown-user:hover {
+  cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
+.toppad
+{margin-top:20px;
+}
+
+</style>
+  <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 " >
+     <div class="panel panel-info">
+       <div class="panel-heading">
+         <h3 class="panel-title">Perfil</h3>
+       </div>
+       <div class="panel-body">
+         <div class="row">
+           <article class=" col-md-9 col-lg-9 ">
+             <table class="table table-user-information">
+               <tbody>
+                 <tr>
+                   <td>Nombre:</td>
+                   <td>{{ user_info.name }}</td>
+                 </tr>
+                 <tr style="text-align:left;">
+                   <td>Apellidos:</td>
+                   <td>{{ user_info.surname }}</td>
+                 </tr>
+                 <tr>
+                   <td>Correo electrónico:</td>
+                   <td>{{ user_info.email }}</td>
+                 </tr>
+                <tr>
+                 <tr>
+                   <td>Dirección:</td>
+                   <td> {{ user_info.address }}</td>
+                 </tr>
+                   <td>Número Teléfonico:</td>
+                   <td> {{ user_info.phoneNumber }}</td>
+                 </tr>
+               </tbody>
+             </table>
+           </article>
+           <article class="col-md-3 col-lg-3 " align="center" style="margin-top:5px;">
+              <img alt="User Pic" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" width="100px"height="100px" >
+            </article>
+         </div>
+         <div class="row">
+           <article class="col-md-offset-4 col-sm-offset-5 col-lg-offset-4 col-xs-offset-4" style="margin-top:10px;">
+             <a href="{{ path('user') }}" class="btn btn-primary">Volver</a>
+             <a href="{{ path('user-edit',{'id':user_info.id,'email':user_info.email }) }}" class="btn btn-primary">Actualizar</a>
+           </article>
+         </div>
+       </div>
+     </div>
+   </article>
+  <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 " >
+     <div class="panel panel-info">
+       <div class="panel-heading">
+         <h3 class="panel-title">Participando</h3>
+       </div>
+       <div class="panel-body">
+         <div class="row">
+           <article class=" col-md-12 col-lg-12 ">
+             <table class="table ">
+               <tbody>
+                 <tr>
+                   <th>Nombre:</th>
+                   <th>Descripción</th>
+                   <th>Dirección</th>
+                 </tr>
+                 <tr>
+                   <td>Hospital</td>
+                   <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </td>
+                   <td>C/:Juame primer</td>
+                 </tr>
+               </tbody>
+             </table>
+         </div>
+       </div>
+     </div>
+   </article>
 {% endblock %}
