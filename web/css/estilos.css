@@ -415,7 +415,7 @@ hr.gallery-notification {
     margin-top: 10px;
     margin-bottom: 10px;
     border: 0;
-    border-top: 2px solid #eee;
+    border-bottom: 2px solid rgb(134, 134, 134);
 }
 div.image-notification{
 	width: 10%;
@@ -434,12 +434,23 @@ div.desc-notification {
     text-align: center;
     font-size: 12px;
     padding-left: 25px;
+
 }
 div.delete-notification{
+  height: 100px;
   float: right;
-  padding-top: 2%;
+  border-left: 1px solid rgb(219, 219, 219);
 }
-div.delete-notification i.glyphicon-trash{
-  margin-top: 50%;
-  font-size: 30px;
+div.delete-notification i.glyphicon-remove{
+  margin-top: 15%;
+  margin-bottom: 30%;
+  font-size: 15px;
+  color: rgb(103, 103, 103);
+  float: right;
+}
+div.delete-notification i.glyphicon-remove:hover{
+  margin-top: 15%;
+  margin-bottom: 30%;
+  font-size: 15px;
+  color: rgb(46, 45, 45);
 }
