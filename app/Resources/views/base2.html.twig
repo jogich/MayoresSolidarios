@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
+    {% endblock %}
+</head>
+<body>
+<div class="container-fluid display-table" >
+    <div class="row display-table-row">
+        <!-- barra de navegacion -->
+        <nav class="col-md-2 col-sm-1 hidden-xs display-table-cell  box" id="navigation">
+            <div class="logo">
+                <a href="{{ path('homepage') }}"><img src="{{ asset('img/LogoMS.png') }}" alt="merkery_logo" class="hidden-xs hidden-sm">
+                    <img src="" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                </a>
+            </div>
+            <div class="navi">
+                <ul>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="active"><a href="{{ path('user') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Usuarios</span></a></li>
+                    <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Proyectos</span></a></li>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
+                    <li><a href=""><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-10 col-sm-11 display-table-cell ">
+            <!-- Barra de nevegacion vertical -->
+            <div class="row">
+                <header>
+                    <div class="col-md-1">
+                        <nav class="navbar-default pull-left">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed float:left;" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-5">
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="header-rightside">
+                            <ul class="list-inline header-top pull-right" >
+                                {% if app.user %}
+                                <li><p class="text-muted">Bienvenido {{ app.user.username }}</p></li>
+                                {% endif %}
+                                <li>
+                                    <!-- Notificaciones -->
+                                    <a href="#" class="icon-info">
+                                        <i class="fa fa-bell" aria-hidden="true"></i>
+                                        <span class="label label-primary">{% block count_notification %}{% endblock %}</span><!-- Aqui seleccionamos el numero de notificaciones que tiene el usuario -->
+                                    </a>
+                                </li>
+                                <!-- dropdown de perfil de usuario -->
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="user">
+                                        <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <div class="navbar-content" style="margin-left:15px;">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="user"></a><br>
+                                                <span>{% block userName %}{% endblock %}</span>
+                                                <p class="text-muted small">
+                                                  <div style="width:100px;"></div>
+
+                                                </p>
+                                                <div class="divider"></div>
+
+                                                {% if app.user %}<a href="{{ path('user-profile', { 'email': app.user.username }) }}" class="btn btn-info" style="margin-bottom:-15px;">Perfil</a>{% endif %}
+                                                <hr>
+                                                <a href="{{ path('logout') }}" class="btn btn-danger" style="margin-top:-15px;">Salir</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <!-- contenido de nuestra pagina -->
+            <section class="user-dashboard">
+                <h1>{% block headline %}{% endblock %}</h1>
+                <div class="row">
+                    <article class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        <div style="margin-bottom: 20px;">{% block button %}{% endblock %}</div>
+
+                            {% block container %}{% endblock %}
+                      
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/plugin.js') }}"></script>
+{% endblock %}
+</body>
+</html>

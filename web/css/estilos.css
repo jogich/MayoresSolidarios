@@ -406,3 +406,55 @@ ul.dropdown-menu {
 #titles{
   margin-left: 15px;
 }
+/* Show Notification */
+div.gallery-notification {
+    margin: 2px;
+    border: 1px solid #ccc;
+    float: left;
+   	width: 100%;
+    background-color: rgb(236, 236, 236);
+
+}
+hr.gallery-notification {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-bottom: 2px solid rgb(134, 134, 134);
+}
+div.image-notification{
+	width: 10%;
+  height: auto;
+}
+
+div.gallery-notification img {
+    width: 120%;
+    height: auto;
+    border-left: 1px solid rgb(219, 219, 219);
+    margin-left: -17px;
+}
+
+div.desc-notification {
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    padding-left: 25px;
+
+}
+div.delete-notification{
+  height: 100px;
+  float: right;
+  border-left: 1px solid rgb(219, 219, 219);
+}
+div.delete-notification i.glyphicon-remove{
+  margin-top: 15%;
+  margin-bottom: 30%;
+  font-size: 15px;
+  color: rgb(103, 103, 103);
+  float: right;
+}
+div.delete-notification i.glyphicon-remove:hover{
+  margin-top: 15%;
+  margin-bottom: 30%;
+  font-size: 15px;
+  color: rgb(46, 45, 45);
+}
