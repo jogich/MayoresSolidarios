@@ -1,6 +1,6 @@
 {% extends 'base2.html.twig' %}
 {% block container %}
-  <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 " >
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
      <div class="panel panel-info">
        <div class="panel-heading">
          <h3 class="panel-title">Perfil</h3>
@@ -38,7 +38,7 @@
             </article>
          </div>
          <div class="row">
-           <article class="col-md-offset-4 col-sm-offset-5 col-lg-offset-4 col-xs-offset-4" style="margin-top:10px;">
+           <article class="col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-xs-offset-5" style="margin-top:10px;">
              <a href="{{ path('user') }}" class="btn btn-primary">Volver</a>
              <a href="{{ path('user-edit',{'id':user_info.id,'email':user_info.email }) }}" class="btn btn-primary">Actualizar</a>
            </article>
@@ -46,30 +46,5 @@
        </div>
      </div>
    </article>
-  <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6 " >
-     <div class="panel panel-info">
-       <div class="panel-heading">
-         <h3 class="panel-title">Participando</h3>
-       </div>
-       <div class="panel-body">
-         <div class="row">
-           <article class=" col-md-12 col-lg-12 ">
-             <table class="table ">
-               <tbody>
-                 <tr>
-                   <th>Nombre:</th>
-                   <th>Descripción</th>
-                   <th>Dirección</th>
-                 </tr>
-                 <tr>
-                   <td>Hospital</td>
-                   <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </td>
-                   <td>C/:Juame primer</td>
-                 </tr>
-               </tbody>
-             </table>
-         </div>
-       </div>
-     </div>
-   </article>
+
 {% endblock %}
