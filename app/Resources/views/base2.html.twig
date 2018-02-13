@@ -58,7 +58,7 @@
                         <div class="header-rightside">
                             <ul class="list-inline header-top pull-right" >
                                 {% if app.user %}
-                                <li><p class="text-muted">Bienvenido {{ app.user.username }}</p></li>
+                                <li><p class="text-muted">Bienvenido {{ app.user.name }} {{ app.user.surname }}</p></li>
                                 {% endif %}
                                 <li>
                                     <!-- Notificaciones -->

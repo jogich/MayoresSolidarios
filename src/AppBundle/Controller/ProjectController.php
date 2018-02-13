@@ -91,7 +91,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/profile/{id}/project/", name="user-projects")
+     * @Route("/profile/{id}/project/", name="user-project")
      */
     public function yourProjectsAction($id)
     {
