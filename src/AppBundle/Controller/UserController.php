@@ -50,9 +50,9 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/{id}/edit/", name="user-edit")
+     * @Route("/user/{id}/{email}/edit/", name="user-edit")
      */
-    public function editAction(Request $request, $id)
+    public function editAction(Request $request, $id, $email)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
 
@@ -66,7 +66,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('user-profile', array('email' => $email ));
         }
 
         return $this->render('user/edit.html.twig', array('user_edit' => $form->createView()));
