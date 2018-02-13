@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class ProjectType extends AbstractType
 {
@@ -19,24 +19,23 @@ class ProjectType extends AbstractType
         $builder
             ->add('title', TextType::class,
                 ['label' => 'Título'])
-            ->add('categories', ChoiceType::class,
-                ['label' => 'Categorías',
-                    'choices'  => [
-                        'Seleccione una' => null,
-                        'Educacional' => 'Educacional',
-                        'Social' => 'Social',
-                        'Sanitario' => 'Sanitario',
-                        'Ninguna' => null
-                    ]
-                ])
             ->add('date_expiration', DateTimeType::class,
                 ['label' => 'Fecha límite',
                 'date_format' => 'dd-MM-yyyy'
                 ])
             ->add('description', TextType::class,
                 ['label' => 'Descripción'])
-            ->add('address', TextType::class,
-                ['label' => 'Direccion']);
+            ->add('maxMembers', IntegerType::class,
+                [
+                    'label' => 'Socios máximos',
+                ])
+            ->add('actualMembers', IntegerType::class,
+                [
+                    'label' => 'Socios actuales',
+                    'required' => false
+                ])
+            ->add('location', TextType::class,
+                ['label' => 'Ubicación']);
     }
 
     /**

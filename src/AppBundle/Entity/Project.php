@@ -39,16 +39,30 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=10000)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="location", type="string", length=255)
      */
-    private $address;
+    private $location;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="maxMembers", type="integer", length=255)
+     */
+    private $maxMembers;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="actualMembers", type="integer", length=255)
+     */
+    private $actualMembers;
 
     /**
      * @var \DateTime
@@ -125,30 +139,6 @@ class Project
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set address
-     *
-     * @param string $address
-     *
-     * @return Project
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
     }
 
     /**
@@ -231,5 +221,77 @@ class Project
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Project
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set maxMembers
+     *
+     * @param integer $maxMembers
+     *
+     * @return Project
+     */
+    public function setMaxMembers($maxMembers)
+    {
+        $this->maxMembers = $maxMembers;
+
+        return $this;
+    }
+
+    /**
+     * Get maxMembers
+     *
+     * @return integer
+     */
+    public function getMaxMembers()
+    {
+        return $this->maxMembers;
+    }
+
+    /**
+     * Set actualMembers
+     *
+     * @param integer $actualMembers
+     *
+     * @return Project
+     */
+    public function setActualMembers($actualMembers)
+    {
+        $this->actualMembers = $actualMembers;
+
+        return $this;
+    }
+
+    /**
+     * Get actualMembers
+     *
+     * @return integer
+     */
+    public function getActualMembers()
+    {
+        return $this->actualMembers;
     }
 }
