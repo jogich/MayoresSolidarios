@@ -478,12 +478,12 @@ div.delete-notification i.glyphicon-remove{
   color: rgb(103, 103, 103);
   float: right;
 }
-div.delete-notification i.glyphicon-remove:hover{
-  margin-top: 15%;
-  margin-bottom: 30%;
-  font-size: 15px;
-  color: rgb(46, 45, 45);
-
+div.delete-notification i.glyphicon-remove:hover {
+    margin-top: 15%;
+    margin-bottom: 30%;
+    font-size: 15px;
+    color: rgb(46, 45, 45);
+}
 .table-user-information > tbody > tr > td {
   border-top: 0;
 }
