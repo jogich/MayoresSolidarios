@@ -1,107 +1,84 @@
-{% extends 'base2.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block container %}
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Perfil</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <article class="col-md-4 col-lg-4 col-sm-5 col-xs-12 ">
-                        {{ form_start(user_edit) }}
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                {{ form_label(user_edit.name, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                <div class="input-group">
-                                    {{ form_widget(user_edit.name, { 'attr': {'class': 'input-group-form-control'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                {{ form_label(user_edit.surname, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                <div class="input-group">
-                                    {{ form_widget(user_edit.surname, { 'attr': {'class': 'input-group-form-control'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                            {{ form_label(user_edit.plainPassword.first, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                            <div class="input-group">
-                                {{ form_widget(user_edit.plainPassword.first, { 'attr': {'class': 'input-group-form-control'} }) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12col-sm-12">
-                                {{ form_label(user_edit.plainPassword.second, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12col-sm-12">
-                                <div class="input-group">
-                                    {{ form_widget(user_edit.plainPassword.second, { 'attr': {'class': 'input-group-form-control'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-md-4 col-lg-4  col-sm-5 col-xs-12 col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12col-sm-12">
-                                {{ form_label(user_edit.email, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12col-sm-12">
-                                <div class="input-group">
-                                    {{ form_widget(user_edit.email, { 'attr': {'class': 'input-group-form-control'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                {{ form_label(user_edit.address, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                <div class="input-group" style="width:100;">
-                                    {{ form_widget(user_edit.address, { 'attr': {'class': 'input-group-form-control'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                {{ form_label(user_edit.phoneNumber, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                <div class="input-group">
-                                    {{ form_widget(user_edit.phoneNumber, { 'attr': {'class': 'input-group-form-control'} }) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                {{ form_label(user_edit.birthday, null, { 'label_attr':{ 'class': 'label-control' }}) }}
-                            </div>
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                                <div class="input-group">
-                                    {{ form_widget(user_edit.birthday) }}
-                                </div>
-                            </div>
-                        </div>
-                        {{ form_end(user_edit) }}
-                    </article>
-                    <article class="col-md-3 col-lg-12 col-xs-12 col-lg-3 " align="center" style="margin-top:5px;">
-                        <img alt="User Pic" src="https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg" width="100px"height="100px" >
-                    </article>
+    {{ form_start(user_edit) }}
+    <div class="new_user">
+        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 ">
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.name) }}
+
+                        {{ form_widget(user_edit.name, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
                 </div>
-                <div class="row">
-                    <article class="col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-xs-offset-5">
-                        <button type="submit" class="btn btn-primary" style="margin-top:5px;">EDITAR</button>
-                    </article>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.surname) }}
+                        {{ form_widget(user_edit.surname, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.plainPassword.first) }}
+                        {{ form_widget(user_edit.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.plainPassword.second) }}
+                        {{ form_widget(user_edit.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
                 </div>
             </div>
         </div>
-    </article>
+        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-lg-offset-1" style="padding-left:-5px;">
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.email) }}
+                        {{ form_widget(user_edit.email, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.phoneNumber) }}
+                        {{ form_widget(user_edit.phoneNumber, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.address) }}
+                        {{ form_widget(user_edit.address, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.birthday) }}
+                        {{ form_widget(user_edit.birthday) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-xs-12">
+            <div id="button_create_project">
+                <button  type="submit" class="btn btn-success">EDITAR</button>
+            </div>
+        </div>
+    </div>
 
+    {{ form_end(user_edit) }}
 {% endblock %}
