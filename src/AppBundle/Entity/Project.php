@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Project
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user_id = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,13 +35,6 @@ class Project
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="categories", type="array", length=255, nullable=true)
-     */
-    private $categories;
 
     /**
      * @var string
@@ -63,6 +64,10 @@ class Project
      */
     private $date_expiration;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="user_id")
+     */
+    private $user_id;
 
     /**
      * Get id
@@ -97,7 +102,7 @@ class Project
     {
         return $this->title;
     }
-    
+
     /**
      * Set description
      *
@@ -195,26 +200,36 @@ class Project
     }
 
     /**
-     * Set categories
+     * Add userId
      *
-     * @param array $categories
+     * @param \AppBundle\Entity\User $userId
      *
      * @return Project
      */
-    public function setCategories($categories)
+    public function addUserId(\AppBundle\Entity\User $userId)
     {
-        $this->categories = $categories;
+        $this->user_id[] = $userId;
 
         return $this;
     }
 
     /**
-     * Get categories
+     * Remove userId
      *
-     * @return array
+     * @param \AppBundle\Entity\User $userId
      */
-    public function getCategories()
+    public function removeUserId(\AppBundle\Entity\User $userId)
     {
-        return $this->categories;
+        $this->user_id->removeElement($userId);
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
     }
 }

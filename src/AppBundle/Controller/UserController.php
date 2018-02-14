@@ -66,7 +66,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('user-profile', array('user_edit' => $user));
         }
 
         return $this->render('user/edit.html.twig', array('user_edit' => $form->createView()));

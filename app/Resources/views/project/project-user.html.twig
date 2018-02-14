@@ -1,37 +1,27 @@
+
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('datatables/datatables-plugins/dataTables.bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('datatables/datatables-responsive/dataTables.responsive.css') }}">
 {% endblock %}
-{% block button %}
-    <a class="btn btn-primary btn-lg" style="font-size: 15px;" href="{{ path('user-new') }}">Crear usuario</a>
-{% endblock %}
 {% block container %}
     <table class="table" id="dataTables">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Correo electrónico</th>
-                <th>Fecha de nacimiento</th>
-                <th></th>
+                <th>Titulo</th>
+                <th>Decripción</th>
+                <th>Fecha creación</th>
+                <th>Fecha de expiración</th>
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for project in user_info.GroupId %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.surname }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.birthday | date('d/m/Y') }}</td>
-                <td>
-                    <a href="{{ path('user-profile', {'email': user.email }) }}" id="icons" class="fa fa-user"></a>
-                    <a href="{{ path('user-edit', { 'id': user.id }) }}" id="icons" class="fa fa-edit"></a>
-                    <a href="{{ path('user-delete', { 'id': user.id }) }}" id="icons" class="fa fa-trash"></a>
-                </td>
+                <td>{{ project.title }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.dateCreate | date('d/m/Y') }}</td>
+                <td>{{ project.dateExpiration | date('d/m/Y') }}</td>
             </tr>
         {% endfor %}
         </tbody>
