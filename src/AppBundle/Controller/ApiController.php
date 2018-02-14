@@ -80,7 +80,7 @@ class ApiController extends Controller
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
 
-        if (empty)
+
 
     }
 
