@@ -18,6 +18,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->group_id = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -83,6 +91,10 @@ class User implements UserInterface
      */
     private $roles = array();
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Project", inversedBy="project_id")
+     */
+    private $group_id;
 
     /**
      * Get id
@@ -282,6 +294,40 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
-        return null;    
+        return null;
+    }
+
+    /**
+     * Add groupId
+     *
+     * @param \AppBundle\Entity\Project $groupId
+     *
+     * @return User
+     */
+    public function addGroupId(\AppBundle\Entity\Project $groupId)
+    {
+        $this->group_id[] = $groupId;
+
+        return $this;
+    }
+
+    /**
+     * Remove groupId
+     *
+     * @param \AppBundle\Entity\Project $groupId
+     */
+    public function removeGroupId(\AppBundle\Entity\Project $groupId)
+    {
+        $this->group_id->removeElement($groupId);
+    }
+
+    /**
+     * Get groupId
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroupId()
+    {
+        return $this->group_id;
     }
 }

@@ -4,8 +4,11 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Form\ProjectType;
+use AppBundle\Entity\User;
+use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
+use AppBundle\Form\ProjectType;
+use AppBundle\Entity\userProjectRelation;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -85,6 +88,18 @@ class ProjectController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('project');
+    }
+
+    /**
+     * @Route("/profile/{id}/project/", name="user-project")
+     */
+    public function yourProjectsAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+
+        $user = $repository->find($id);
+
+        return $this->render('project/project-user.html.twig', array('user_info' => $user));
     }
 
 }

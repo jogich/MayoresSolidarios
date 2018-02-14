@@ -29,7 +29,7 @@
                     <li class="active"><a href="{{ path('user') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Usuarios</span></a></li>
                     <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Proyectos</span></a></li>
                     {% elseif is_granted('ROLE_USER') %}
-                    <li><a href="{{ path('user-project', { 'id': app.user.id }) }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
+                    <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
                     <li><a href=""><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
                     {% endif %}
                 </ul>
@@ -100,9 +100,7 @@
                 <div class="row">
                     <article class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
                         <div style="margin-bottom: 20px;">{% block button %}{% endblock %}</div>
-                        <div class="sales">
                             {% block container %}{% endblock %}
-                        </div>
                     </article>
                 </div>
             </section>

@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Project
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user_id = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -56,6 +64,10 @@ class Project
      */
     private $date_expiration;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="user_id")
+     */
+    private $user_id;
 
     /**
      * Get id
@@ -149,7 +161,7 @@ class Project
     public function setDateCreate($dateCreate)
     {
         $this->date_create = $dateCreate;
-    
+
         return $this;
     }
 
@@ -173,7 +185,7 @@ class Project
     public function setDateExpiration($dateExpiration)
     {
         $this->date_expiration = $dateExpiration;
-    
+
         return $this;
     }
 
@@ -185,5 +197,39 @@ class Project
     public function getDateExpiration()
     {
         return $this->date_expiration;
+    }
+
+    /**
+     * Add userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     *
+     * @return Project
+     */
+    public function addUserId(\AppBundle\Entity\User $userId)
+    {
+        $this->user_id[] = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Remove userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     */
+    public function removeUserId(\AppBundle\Entity\User $userId)
+    {
+        $this->user_id->removeElement($userId);
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
     }
 }
