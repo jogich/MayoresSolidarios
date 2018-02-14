@@ -67,4 +67,21 @@ class ApiController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/api/project/{id}/participate/", name="user-participate")
+     */
+    public function participateUserAction($user_id, $project_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->find($user_id);
+        $project_id = $em->getRepository('AppBundle:User')->find($project_id);
+
+        $encoders = array(new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+
+        if (empty)
+
+    }
+
 }
