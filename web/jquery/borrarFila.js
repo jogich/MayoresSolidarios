@@ -1,47 +1,37 @@
-function functionName(idE) {
-  console.log(idE);
-  $(document).ready(function(){
-  	$(".eliminar").click(function(){
-          $.ajax({url: "/user/"+idE+"/delete/", success: function(result){
-                      type: 'DELETE'
-                      alert("hola");
-                      $(this).parent('td').parent('tr').hide(1000);
-               				$(this).parent('td').parent('tr').remove(2000);
-                  }});
-                });
-            });
-          }
 
-//
-// function functionName(idE) {
-//   $(document).ready(function(){
-//   	$(".eliminar").click(function(){
-//           $.ajax({url: "/user/"+idE+"/delete", success: function(result){
-//               console.log("HOLA");
-//
-//               $(".eliminar").parent('td').parent('tr').hide(1000);
-//               $(".eliminar").parent('td').parent('tr').remove(2000);
-//
-//
-//                 }
-//
-//             });
-//           });
-//         });
-//       }
 
-/*$.ajax(
-        '/user/{id}/delete/',{
-			 	type: 'DELETE',
-				id:$(this).attr('data-id'),
-			},success: function(data,status){
-            if (status=="success"){
-							$(this).parent('td').parent('tr').hide(1000);
-       				$(this).parent('td').parent('tr').remove(2000);
-							alert("Data: " + data + "\nStatus: " + status);
-							var content = "Su consulta ha sido efectuada";
-						}else {
-							alert("Data: " + data + "\nStatus: " + status);
-							var content = "Su consulta no ha sido efectuada";
-						}
-			});*/
+    // alert(id);
+
+    $(document).ready(function(){
+        $(".eliminar").click(function(){
+          var id=$(this).data("id");
+          var elemento=$(this);
+            $.ajax({
+              url: "/user/"+id+"/delete/",
+              type: 'DELETE',
+              success: function(result){
+              elemento.parent('td').parent('tr').hide(1000);
+              // $(".eliminar").parent('td').parent('tr').hide(1000);
+              // $(".eliminar").parent('td').parent('tr').remove(2000);
+              //   console.log('hola');
+            }
+          });
+        });
+    });
+
+
+  // jordi
+    // function functionName(id) {
+    //   // alert(id);
+    //
+    //   $.ajax({
+    //     url: "/user/"+id+"/delete/",
+    //     type: 'DELETE',
+    //     success: function(result){
+    //       console.log('hola');
+    //       var_dump(result);
+    //      $(".eliminar").parent('td').parent('tr').hide(1000);
+    //      $(".eliminar").parent('td').parent('tr').remove(2000);
+    //
+    //   }});
+    // }
