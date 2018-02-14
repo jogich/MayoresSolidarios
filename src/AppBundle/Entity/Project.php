@@ -79,6 +79,13 @@ class Project
     private $date_expiration;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="interestedPeople", type="integer", nullable=true)
+     */
+    private $interestedPeople;
+
+    /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="user_id")
      */
     private $user_id;
@@ -293,5 +300,29 @@ class Project
     public function getActualMembers()
     {
         return $this->actualMembers;
+    }
+
+    /**
+     * Set interestedPeople
+     *
+     * @param integer $interestedPeople
+     *
+     * @return Project
+     */
+    public function setInterestedPeople($interestedPeople)
+    {
+        $this->interestedPeople = $interestedPeople;
+
+        return $this;
+    }
+
+    /**
+     * Get interestedPeople
+     *
+     * @return integer
+     */
+    public function getInterestedPeople()
+    {
+        return $this->interestedPeople;
     }
 }

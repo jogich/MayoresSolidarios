@@ -34,6 +34,8 @@ class ProjectType extends AbstractType
                     'label' => 'Socios actuales',
                     'required' => false
                 ])
+            ->add('interestedPeople', IntegerType::class,
+                ['label' => 'Personas interesadas'])
             ->add('location', TextType::class,
                 ['label' => 'Ubicación']);
     }
