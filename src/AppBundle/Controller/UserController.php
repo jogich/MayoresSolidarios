@@ -69,7 +69,7 @@ class UserController extends Controller
             return $this->redirectToRoute('user-profile', array('user_edit' => $user));
         }
 
-        return $this->render('user/edit.html.twig', array('user_edit' => $form->createView()));
+        return $this->render('user/edit.html.twig', array('user_edit' => $form->createView(), 'user_id' => $id));
     }
 
     /**
