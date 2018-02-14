@@ -11,6 +11,7 @@ use AppBundle\Form\ProjectType;
 use AppBundle\Entity\userProjectRelation;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use \DateTime;
 
 class ProjectController extends Controller
 {
@@ -53,13 +54,15 @@ class ProjectController extends Controller
     public function newAction(Request $request)
     {
         $project = new Project();
-        $form= $this->createForm(ProjectType::class, $project);
+        $form = $this->createForm(ProjectType::class, $project);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $project = $form->getData();
+
+            $date = new DateTime('now');
+            $project->setDateCreate($date);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
