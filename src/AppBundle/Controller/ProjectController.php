@@ -28,6 +28,26 @@ class ProjectController extends Controller
     }
 
     /**
+     * @Route("/project/info-user/{id}/", name="project-user-info")
+     */
+    public function infoUserAction($id)
+    {
+        $em = $this->getDoctrine()->getRepository(Project::class);
+        $project = $em->findOneById($id);
+        return $this->render('project/info-user.html.twig', array("projectsID"=>$project));
+    }
+
+    /**
+     * @Route("/project/info-admin/{id}/", name="project-admin-info")
+     */
+    public function infoAdminAction($id)
+    {
+        $em = $this->getDoctrine()->getRepository(Project::class);
+        $project = $em->findOneById($id);
+        return $this->render('project/info-admin.html.twig', array("projectsID"=>$project));
+    }
+
+    /**
      * @Route("/project/new/", name="project-new")
      */
     public function newAction(Request $request)

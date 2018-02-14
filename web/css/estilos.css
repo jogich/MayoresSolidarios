@@ -432,6 +432,21 @@ ul.dropdown-menu {
 #titles{
   margin-left: 15px;
 }
+
+
+#info-description-project{
+  display: block;
+  text-overflow: ellipsis;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 55px;
+}
+
+#button_info_project {
+    text-align: center;
+    margin-top: 40px;
+}
 /* Show Notification */
 div.gallery-notification {
     margin: 2px;
