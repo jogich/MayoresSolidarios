@@ -1,7 +1,4 @@
 
-
-    // alert(id);
-
     $(document).ready(function(){
         $(".eliminar").click(function(){
           var id=$(this).data("id");
@@ -11,27 +8,13 @@
               type: 'DELETE',
               success: function(result){
               elemento.parent('td').parent('tr').hide(1000);
-              // $(".eliminar").parent('td').parent('tr').hide(1000);
-              // $(".eliminar").parent('td').parent('tr').remove(2000);
-              //   console.log('hola');
+              elemento.parent('td').parent('tr').remove(3000);
+
             }
+          });
+          $(document).ajaxError(function(){
+            $(".alert-warning").css("display", "block");
+            setTimeout(function(){  $(".alert-warning").css("display", "none"); }, 5000);
           });
         });
     });
-
-
-  // jordi
-    // function functionName(id) {
-    //   // alert(id);
-    //
-    //   $.ajax({
-    //     url: "/user/"+id+"/delete/",
-    //     type: 'DELETE',
-    //     success: function(result){
-    //       console.log('hola');
-    //       var_dump(result);
-    //      $(".eliminar").parent('td').parent('tr').hide(1000);
-    //      $(".eliminar").parent('td').parent('tr').remove(2000);
-    //
-    //   }});
-    // }
