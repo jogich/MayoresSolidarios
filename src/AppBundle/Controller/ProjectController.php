@@ -31,31 +31,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/project/{id}/user/", name="project-user")
-     */
-    public function infoUserAction($user_id, $project_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
-        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
-
-        return $this->render('project/info-user.html.twig', array('project' => $project));
-    }
-
-    /**
-     * @Route("/project/{id}/admin/", name="project-admin")
-     */
-    public function infoAdminAction($id)
-    {
-        $em = $this->getDoctrine()->getRepository(Project::class);
-
-        $project = $em->find($id);
-
-        return $this->render('project/info-admin.html.twig', array('project' => $project));
-    }
-
-    /**
      * @Route("/project/new/", name="project-new")
      */
     public function newAction(Request $request)
@@ -143,6 +118,37 @@ class ProjectController extends Controller
         $user = $repository->find($id);
 
         return $this->render('project/project-user.html.twig', array('user_info' => $user));
+    }
+
+    /**
+     * @Route("/project/{project_id}/user/{user_id}", name="project-user")
+     */
+    public function infoUserAction($project_id, $user_id)
+    {
+
+        $exist = 2;
+        $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
+        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
+
+        if ($user->getRelation() == 0)
+        {
+            $exist = 0;
+        } else {
+            $exist = 1;
+        }
+        return $this->render('project/info-user.html.twig', array('project' => $project, 'exist' => $exist));
+    }
+
+    /**
+     * @Route("/project/{id}/admin/", name="project-admin")
+     */
+    public function infoAdminAction($id)
+    {
+        $em = $this->getDoctrine()->getRepository(Project::class);
+
+        $project = $em->find($id);
+
+        return $this->render('project/info-admin.html.twig', array('project' => $project));
     }
 
 }

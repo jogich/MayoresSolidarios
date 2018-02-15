@@ -116,9 +116,9 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/{user_id}/project/{project_id}/", name="user-project-add")
+     * @Route("/user/{user_id}/project/{project_id}/add", name="user-project-add")
      */
-    public function userProjectAction($user_id,$project_id)
+    public function userProjectAddAction($user_id,$project_id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -126,10 +126,34 @@ class UserController extends Controller
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
         $user->addProjectId($project);
+        $user->setRelation(1);
 
         $em->persist($user);
         $em->flush();
 
-        return $this->redirectToRoute('project-user', array('id' => $project_id));
+        $response = $this->forward('AppBundle:Project:infoUser', array('project_id'  => $project_id, 'user_id' => $user_id));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/user/{user_id}/project/{project_id}/delete", name="user-project-delete")
+     */
+    public function userProjectRemoveAction($user_id,$project_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
+        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
+
+        $user->removeProjectId($project);
+        $user->setRelation(0);
+
+        $em->persist($user);
+        $em->flush();
+
+        $response = $this->forward('AppBundle:Project:infoUser', array('project_id'  => $project_id, 'user_id' => $user_id));
+
+        return $response;
     }
 }

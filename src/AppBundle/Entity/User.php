@@ -99,6 +99,12 @@ class User implements UserInterface
     private $project_id;
 
     /**
+     * @var boolean
+     * @ORM\Column(name="relation", type="boolean", nullable=true)
+     */
+    private $relation;
+
+    /**
      * Get id
      *
      * @return int
@@ -331,5 +337,29 @@ class User implements UserInterface
     public function getProjectId()
     {
         return $this->project_id;
+    }
+
+    /**
+     * Set relation
+     *
+     * @param boolean $relation
+     *
+     * @return User
+     */
+    public function setRelation($relation)
+    {
+        $this->relation = $relation;
+
+        return $this;
+    }
+
+    /**
+     * Get relation
+     *
+     * @return boolean
+     */
+    public function getRelation()
+    {
+        return $this->relation;
     }
 }
