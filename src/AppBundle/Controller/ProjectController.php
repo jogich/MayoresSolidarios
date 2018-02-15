@@ -33,11 +33,12 @@ class ProjectController extends Controller
     /**
      * @Route("/project/{id}/user/", name="project-user")
      */
-    public function infoUserAction($id)
+    public function infoUserAction($user_id, $project_id)
     {
-        $em = $this->getDoctrine()->getRepository(Project::class);
+        $em = $this->getDoctrine()->getManager();
 
-        $project = $em->find($id);
+        $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
+        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
         return $this->render('project/info-user.html.twig', array('project' => $project));
     }

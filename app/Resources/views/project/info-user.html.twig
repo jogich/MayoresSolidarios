@@ -31,8 +31,10 @@
         <div class="form-group col-sm-12 col-xs-12">
             <div id="button_info_project">
                 <a href="{{ path('project') }}" type="button" class="btn btn-default" >VOLVER</a>
-                <a href="{{ path('user-project-add', {user_id: app.user.id, project_id: project.id }) }}" style="margin-left:20px;" type="button" class="btn btn-success" >PARTICIPAR</a>
-                <button  style="margin-left:20px;" type="button" class="btn btn-info" >INTERESADO</button>
+
+                <a href="{{ path('user-project-add', {'user_id': app.user.id, 'project_id': project.id }) }}" style="margin-left:20px;" type="button" class="btn btn-success" >PARTICIPAR</a>
+
+                <!--<button  style="margin-left:20px;" type="button" class="btn btn-info" >INTERESADO</button>-->
                 <button  style="margin-left:20px;" type="button" class="btn btn-primary">IMPRIMIR</button>
             </div>
         </div>
