@@ -7,7 +7,6 @@
                 <div class="cols-sm-10">
                     <div class="form-group row">
                         {{ form_label(user_edit.name) }}
-
                         {{ form_widget(user_edit.name, { 'attr': {'class': 'form-control'} }) }}
                     </div>
                 </div>
@@ -20,6 +19,7 @@
                     </div>
                 </div>
             </div>
+            {% if app.user.id == user_id %}
             <div class="form-group">
                 <div class="cols-sm-10">
                     <div class="form-group row">
@@ -36,8 +36,24 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-lg-offset-1" style="padding-left:-5px;">
+            {% else %}
+            <div class="form-group hide">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.plainPassword.first) }}
+                        {{ form_widget(user_edit.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group hide">
+                <div class="cols-sm-10">
+                    <div class="form-group row">
+                        {{ form_label(user_edit.plainPassword.second) }}
+                        {{ form_widget(user_edit.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             <div class="form-group">
                 <div class="cols-sm-10">
                     <div class="form-group row">
@@ -79,6 +95,5 @@
             </div>
         </div>
     </div>
-
     {{ form_end(user_edit) }}
 {% endblock %}

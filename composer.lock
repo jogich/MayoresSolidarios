@@ -1672,7 +1672,11 @@
                 "annotations",
                 "controllers"
             ],
+<<<<<<< HEAD
             "time": "2018-02-14T08:40:54+00:00"
+=======
+            "time": "2018-02-14 08:40:54"
+>>>>>>> 3a01c40214a672882f55e415bf7b40a007439122
         },
         {
             "name": "sensiolabs/security-checker",
