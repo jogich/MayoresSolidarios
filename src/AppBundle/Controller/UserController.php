@@ -5,10 +5,12 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class UserController extends Controller
 {
@@ -74,10 +76,12 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/{id}/delete/", name="user-delete")
+     * @Route("/user/{id}/delete/", name="user-delete" )
+     * @Method({"DELETE"})
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
+      try{
         $em = $this->getDoctrine()->getManager();
 
         $user = $em->getRepository('AppBundle:User')->findOneById($id);
@@ -85,7 +89,18 @@ class UserController extends Controller
         $em->remove($user);
         $em->flush();
 
-        return $this->redirectToRoute('user');
+      } catch(\Exception $e){
+        return new Response(
+            'Fallo borrado',
+            Response::HTTP_BAD_REQUEST,
+            array('content-type' => 'text/html')
+        );
+      }
+      return new Response(
+          'OK',
+          Response::HTTP_OK,
+          array('content-type' => 'text/html')
+      );
     }
 
     /**
