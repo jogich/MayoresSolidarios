@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
@@ -77,9 +79,11 @@ class ProjectController extends Controller
 
     /**
      * @Route("/project/{id}/delete/", name="project-delete")
+     * @Method({"DELETE"})
      */
     public function deleteAction($id)
     {
+      try{
         $em = $this->getDoctrine()->getManager();
 
         $project = $em->getRepository('AppBundle:Project')->findOneById($id);
@@ -87,7 +91,18 @@ class ProjectController extends Controller
         $em->remove($project);
         $em->flush();
 
-        return $this->redirectToRoute('project');
+      } catch(\Exception $e){
+        return new Response(
+            'Fallo borrado',
+            Response::HTTP_BAD_REQUEST,
+            array('content-type' => 'text/html')
+        );
+      }
+      return new Response(
+          'OK',
+          Response::HTTP_OK,
+          array('content-type' => 'text/html')
+      );
     }
 
     /**

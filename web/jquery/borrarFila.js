@@ -11,7 +11,7 @@
           var id=$(this).data("id");
           var elemento=$(this);
             $.ajax({
-              url: "/"+table+"/1/delete/",
+              url: "/"+table+"/"+id+"/delete/",
               type: 'DELETE',
               success: function(result){
               elemento.parent('td').parent('tr').hide(1000);

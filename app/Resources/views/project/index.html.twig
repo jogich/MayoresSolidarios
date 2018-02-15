@@ -8,6 +8,9 @@
     <a class="btn btn-primary btn-lg" style="font-size: 15px;" href="{{ path('project-new') }}">Crear proyecto</a>
 {% endblock %}
 {% block container %}
+    <div class="alert alert-warning " style="display:none;">
+      <strong>Alerta!</strong> No se ha podido eliminar en el servidor, Contacte con el Administrador o fallo su conexion de Internet.
+    </div>
     <table class="table" id="dataTables">
         <thead>
             <tr>
@@ -29,7 +32,7 @@
                 <td>{{ project.dateExpiration | date('d/m/Y') }}</td>
                 <td>
                     <a href="{{ path('project-edit', { 'id': project.id }) }}" id="icons" class="fa fa-edit"></a>
-                    <a href="{{ path('project-delete', { 'id': project.id }) }}" id="icons" class="fa fa-trash"></a>
+                    <a href="#" id="icons" class="fa fa-trash eliminar" data-id="{{project.id}}"></a>
                 </td>
             </tr>
         {% endfor %}
