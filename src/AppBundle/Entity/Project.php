@@ -86,7 +86,7 @@ class Project
     private $interestedPeople;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="user_id")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="project_id")
      */
     private $user_id;
 
@@ -197,40 +197,6 @@ class Project
     }
 
     /**
-     * Add userId
-     *
-     * @param \AppBundle\Entity\User $userId
-     *
-     * @return Project
-     */
-    public function addUserId(\AppBundle\Entity\User $userId)
-    {
-        $this->user_id[] = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Remove userId
-     *
-     * @param \AppBundle\Entity\User $userId
-     */
-    public function removeUserId(\AppBundle\Entity\User $userId)
-    {
-        $this->user_id->removeElement($userId);
-    }
-
-    /**
-     * Get userId
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
      * Set location
      *
      * @param string $location
@@ -324,5 +290,39 @@ class Project
     public function getInterestedPeople()
     {
         return $this->interestedPeople;
+    }
+
+    /**
+     * Add userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     *
+     * @return Project
+     */
+    public function addUserId(\AppBundle\Entity\User $userId)
+    {
+        $this->user_id[] = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Remove userId
+     *
+     * @param \AppBundle\Entity\User $userId
+     */
+    public function removeUserId(\AppBundle\Entity\User $userId)
+    {
+        $this->user_id->removeElement($userId);
+    }
+
+    /**
+     * Get userId
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
     }
 }

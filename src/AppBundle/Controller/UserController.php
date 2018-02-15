@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManager;
 
 class UserController extends Controller
@@ -97,5 +98,23 @@ class UserController extends Controller
         $user = $em->getRepository('AppBundle:User')->findOneByEmail($email);
 
         return $this->render('user/profile.html.twig', array('user_info' => $user));
+    }
+
+    /**
+     * @Route("/user/{user_id}/project/{project_id}/", name="user-project-add")
+     */
+    public function userProjectAction($user_id,$project_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
+        $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
+
+        $user->addProjectId($project);
+
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('project-user', array('id' => $project_id));
     }
 }

@@ -31,9 +31,9 @@
                     <a href="{{ path('project-edit', { 'id': project.id }) }}" id="icons" class="fa fa-edit"></a>
                     <a href="{{ path('project-delete', { 'id': project.id }) }}" id="icons" class="fa fa-trash"></a>
                     {% if is_granted('ROLE_USER') %}
-                    <a href="{{ path('project-user-info', { 'id': project.id }) }}" id="icons" class="fa fa-info-circle"></a>
+                    <a href="{{ path('project-user', { 'id': project.id }) }}" id="icons" class="fa fa-info-circle"></a>
                     {% elseif is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('project-admin-info', { 'id': project.id }) }}" id="icons" class="fa fa-info-circle"></a>
+                    <a href="{{ path('project-admin', { 'id': project.id }) }}" id="icons" class="fa fa-info-circle"></a>
                     {% endif %}
                 </td>
             </tr>

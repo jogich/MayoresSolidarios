@@ -17,12 +17,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->group_id = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->project_id = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -92,9 +93,10 @@ class User implements UserInterface
     private $roles = array();
 
     /**
-     * @ORM\ManyToMany(targetEntity="Project", inversedBy="project_id")
+     * @ORM\ManyToMany(targetEntity="Project", inversedBy="user_id")
+     * @ORM\JoinTable(name="user_project")
      */
-    private $group_id;
+    private $project_id;
 
     /**
      * Get id
@@ -298,36 +300,36 @@ class User implements UserInterface
     }
 
     /**
-     * Add groupId
+     * Add projectId
      *
-     * @param \AppBundle\Entity\Project $groupId
+     * @param \AppBundle\Entity\Project $projectId
      *
      * @return User
      */
-    public function addGroupId(\AppBundle\Entity\Project $groupId)
+    public function addProjectId(\AppBundle\Entity\Project $projectId)
     {
-        $this->group_id[] = $groupId;
+        $this->project_id[] = $projectId;
 
         return $this;
     }
 
     /**
-     * Remove groupId
+     * Remove projectId
      *
-     * @param \AppBundle\Entity\Project $groupId
+     * @param \AppBundle\Entity\Project $projectId
      */
-    public function removeGroupId(\AppBundle\Entity\Project $groupId)
+    public function removeProjectId(\AppBundle\Entity\Project $projectId)
     {
-        $this->group_id->removeElement($groupId);
+        $this->project_id->removeElement($projectId);
     }
 
     /**
-     * Get groupId
+     * Get projectId
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGroupId()
+    public function getProjectId()
     {
-        return $this->group_id;
+        return $this->project_id;
     }
 }

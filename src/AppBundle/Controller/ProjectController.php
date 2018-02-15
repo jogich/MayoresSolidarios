@@ -29,23 +29,27 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/project/info-user/{id}/", name="project-user-info")
+     * @Route("/project/{id}/user/", name="project-user")
      */
     public function infoUserAction($id)
     {
         $em = $this->getDoctrine()->getRepository(Project::class);
-        $project = $em->findOneById($id);
-        return $this->render('project/info-user.html.twig', array("projectsID"=>$project));
+
+        $project = $em->find($id);
+
+        return $this->render('project/info-user.html.twig', array('project' => $project));
     }
 
     /**
-     * @Route("/project/info-admin/{id}/", name="project-admin-info")
+     * @Route("/project/{id}/admin/", name="project-admin")
      */
     public function infoAdminAction($id)
     {
         $em = $this->getDoctrine()->getRepository(Project::class);
-        $project = $em->findOneById($id);
-        return $this->render('project/info-admin.html.twig', array("projectsID"=>$project));
+
+        $project = $em->find($id);
+
+        return $this->render('project/info-admin.html.twig', array('project' => $project));
     }
 
     /**
@@ -81,7 +85,7 @@ class ProjectController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Project');
 
-        $project = $repository->findOneById($id);
+        $project = $repository->find($id);
         $form = $this->createForm(ProjectType::class, $project);
 
         $form->handleRequest($request);
@@ -105,7 +109,7 @@ class ProjectController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $project = $em->getRepository('AppBundle:Project')->findOneById($id);
+        $project = $em->getRepository('AppBundle:Project')->find($id);
 
         $em->remove($project);
         $em->flush();
@@ -116,7 +120,7 @@ class ProjectController extends Controller
     /**
      * @Route("/profile/{id}/project/", name="user-project")
      */
-    public function yourProjectsAction($id)
+    public function userProjectsAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
 

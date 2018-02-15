@@ -70,39 +70,4 @@ class ApiController extends Controller
 
         return $response;
     }
-
-    /**
-     * @Route("/api/user/{user_id}/project/{project_id}", name="api-delete-user")
-     *
-     */
-    public function participateUserAction($user_id, $project_id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $user= new User();
-        $project = new Project();
-
-        $user_repository = $em->getRepository('AppBundle:User')->find($user_id);
-        $project_repository = $em->getRepository('AppBundle:Project')->find($project_id);
-        var_dump($user->getGroupId($project_id));
-        var_dump($project->getGroupId($project_id));
-
-
-        $encoders = array(new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
-        $serializer = new Serializer($normalizers, $encoders);
-
-        if (empty($user_id || $project_id)) {
-            $jsonContent = $serializer->serialize(array('code' => 400, 'message' => 'User or project doesnt exist'), 'json');
-            $response = JsonResponse::fromJsonString($jsonContent);
-        } else {
-            $user->addGroupId($project_repository);
-            $project->addUserId($user_repository);
-            $jsonContent = $serializer->serialize(array('code' => 200, 'Deleted succesfully'), 'json');
-            $response = JsonResponse::fromJsonString($jsonContent);
-        }
-
-        return $response;
-    }
-
 }
