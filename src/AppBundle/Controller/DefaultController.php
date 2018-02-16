@@ -10,14 +10,22 @@ use AppBundle\Entity\Project;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{currentPage}", name="homepage")
      */
-    public function showProjectsAction()
+    public function showProjectsAction($currentPage = 1)
     {
-        $em = $this->getDoctrine()->getManager();
+        $limit=4;
+        $repository = $this->getDoctrine()->getRepository(Project::class);
+        $projects = $repository->allProjects($currentPage, $limit);
+         $projectResult = $projects['paginator'];
+         $projectQueryComplet =  $projects['query'];
 
-        $project = $em->getRepository('AppBundle:Project')->findAll();
-
-        return $this->render('default/index.html.twig', array('projects' => $project));
+         $maxPages = ceil($projects['paginator']->count() / $limit);
+         return $this->render('default\index.html.twig', array(
+               'project' => $projectResult,
+               'maxPages'=>$maxPages,
+               'thisPage' => $currentPage,
+               'all_items' => $projectQueryComplet
+           ) );
     }
 }

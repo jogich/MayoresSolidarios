@@ -1,7 +1,7 @@
 {% extends 'base2.html.twig' %}
 {% block container %}
   <div class="row">
-    {% for row in projects %}
+    {% for row in project %}
       <a href="#">
         <article class="color1contenido col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ">
           <div class="gallery-project">
@@ -13,5 +13,26 @@
       </a>
     {% endfor %}
   </div>
+  <div class="row">
+    <article class="col-md-offset-5 col-lg-offset-6 col-sm-offset-5 col-xs-offset-5">
+      {% if maxPages > 1 %}
+         <nav aria-label="Page navigation example">
+           <ul class="pagination">
+             {%if thisPage > 1 %}
+             <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: thisPage-1 < 1 ? 1 : thisPage-1}) }}">Anterior</a></li>
+             {% endif %}
+             {# Render each page number #}
+             {% for i in 1..maxPages %}
+             <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: i}) }}">{{ i }}</a></li>
+             {% endfor %}
+             {%if thisPage < maxPages %}
+             <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">Siguiente</a></li>
+             {% endif %}
+           </ul>
+         </nav>
+       {% endif %}
+    </article>
+  </div>
+
   <br>
 {% endblock %}
