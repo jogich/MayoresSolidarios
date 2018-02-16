@@ -1,0 +1,27 @@
+{% extends 'base2.html.twig' %}
+{% block container %}
+  <div class="row">
+    {% for row in projects %}
+      <a href="#">
+        <article class="color1contenido col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ">
+          <div class="gallery-project">
+            <img src="http://conceptodefinicion.de/wp-content/uploads/2016/03/Fabrica.jpg" alt="Description image" width="300" height="200">
+            <div class="desc-project">{{ row.title }}</div>
+            <div class="desc-project">{{ row.description }}</div>
+          </div>
+        </article>
+      </a>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <article class="col-md-offset-5 col-sm-offset-5  col-lg-offset-5 col-xs-offset-4">
+      <ul class="pagination pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+    </article>
+  </div>
+{% endblock %}
