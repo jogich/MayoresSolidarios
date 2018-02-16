@@ -140,13 +140,13 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/project/{id}/admin/", name="project-admin")
+     * @Route("/project/{project_id}/admin/", name="project-admin")
      */
-    public function infoAdminAction($id)
+    public function infoAdminAction($project_id)
     {
         $em = $this->getDoctrine()->getRepository(Project::class);
 
-        $project = $em->find($id);
+        $project = $em->find($project_id);
 
         return $this->render('project/info-admin.html.twig', array('project' => $project));
     }
