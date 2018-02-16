@@ -1,7 +1,17 @@
-{% extends 'base.html.twig' %}
-{% block userWelcome %}{% endblock %}
-{% block userName %}{% endblock %}
-{% block email %}{% endblock %}
-{% block headline %}{% endblock %}
-{% block body %}
+{% extends 'base2.html.twig' %}
+{% block container %}
+  <div class="row">
+    {% for row in projects %}
+      <a href="#">
+        <article class="color1contenido col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ">
+          <div class="gallery-project">
+            <img src="http://conceptodefinicion.de/wp-content/uploads/2016/03/Fabrica.jpg" alt="Description image" width="300" height="200">
+            <div class="desc-project">{{ row.title }}</div>
+            <div class="desc-project">{{ row.description }}</div>
+          </div>
+        </article>
+      </a>
+    {% endfor %}
+  </div>
+  <br>
 {% endblock %}
