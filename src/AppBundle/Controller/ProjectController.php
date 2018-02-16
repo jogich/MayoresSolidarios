@@ -151,4 +151,15 @@ class ProjectController extends Controller
         return $this->render('project/info-admin.html.twig', array('project' => $project));
     }
 
+    /**
+     * @Route("/showProjects/", name="show-projects")
+     */
+    public function showProjectsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('AppBundle:Project')->findAll();
+
+        return $this->render('project/showProjects.html.twig', array('projects' => $project));
+    }
 }
