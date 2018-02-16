@@ -11,6 +11,7 @@ use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class UserController extends Controller
 {
@@ -42,6 +43,10 @@ class UserController extends Controller
 
             $user->setPassword($password);
             $user->setRoles(array('ROLE_USER'));
+
+            $date = new \DateTime('now');
+            $user->setDateCreate($date);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -59,12 +64,15 @@ class UserController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
 
-        $user = $repository->findOneById($id);
+        $user = $repository->find($id);
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted())
         {
+            $date = new \DateTime('now');
+            $user->setDateUpdate($date);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -84,7 +92,7 @@ class UserController extends Controller
       try{
         $em = $this->getDoctrine()->getManager();
 
-        $user = $em->getRepository('AppBundle:User')->findOneById($id);
+        $user = $em->getRepository('AppBundle:User')->find($id);
 
         $em->remove($user);
         $em->flush();

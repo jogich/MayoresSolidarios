@@ -33,13 +33,14 @@
                 <td>{{ project.dateCreate | date('d/m/Y') }}</td>
                 <td>{{ project.dateExpiration | date('d/m/Y') }}</td>
                 <td>
-                    <a href="{{ path('project-edit', { 'id': project.id }) }}" id="icons" class="fa fa-edit"></a>
-                    <a href="#" id="icons" class="fa fa-trash eliminar" data-id="{{project.id}}"></a>
                     {% if is_granted('ROLE_USER') %}
                     <a href="{{ path('project-user', { 'project_id': project.id, 'user_id': app.user.id }) }}" id="icons" class="fa fa-info-circle"></a>
                     {% elseif is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('project-admin', { 'project_id': project.id }) }}" id="icons" class="fa fa-info-circle"></a>
                     {% endif %}
+                    <a href="" id="icons" class="fa fa-users"></a>
+                    <a href="{{ path('project-edit', { 'id': project.id }) }}" id="icons" class="fa fa-edit"></a>
+                    <a href="#" id="icons" class="fa fa-trash eliminar" data-id="{{project.id}}"></a>
                 </td>
             </tr>
 
