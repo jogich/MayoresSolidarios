@@ -15,13 +15,4 @@ class DefaultController extends Controller
     {
         return $this->render('default/index.html.twig');
     }
-
-    /**
-     * @Route("/landing", name="landing")
-     */
-    public function landingsAction()
-    {
-        return $this->render('default\landing.html.twig');
-    }
-
 }
