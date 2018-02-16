@@ -39,7 +39,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=10000)
+     * @ORM\Column(name="description", type="text", length=10000)
      */
     private $description;
 
@@ -89,6 +89,35 @@ class Project
      * @ORM\ManyToMany(targetEntity="User", inversedBy="project_id")
      */
     private $user_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foto", type="string", length=255)
+     */
+    private $foto;
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return Project
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+        return $this;
+    }
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
 
     /**
      * Get id

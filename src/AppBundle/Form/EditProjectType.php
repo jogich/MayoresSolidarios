@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ProjectType extends AbstractType
+class EditProjectType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -20,7 +20,6 @@ class ProjectType extends AbstractType
         $builder
             ->add('title', TextType::class,
                 ['label' => 'Título'])
-            ->add('foto', FileType::class)
             ->add('date_expiration', DateTimeType::class,
                 ['label' => 'Fecha límite',
                 'date_format' => 'dd-MM-yyyy'

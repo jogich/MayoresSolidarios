@@ -10,6 +10,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
+use AppBundle\Form\EditProjectType;
 use AppBundle\Entity\userProjectRelation;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,17 +36,27 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request)
     {
+        $urlFoto="";
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
-
+        $urlFoto=$project->getFoto();
+        $project->setFoto(null);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+           $project = $form->getData();
+           $fotoFile = $project->getFoto();
+           $fotoFileName = md5(uniqid()).'.'.$fotoFile->guessExtension();
+           $fotoFile->move(
+           $this->getParameter('foto_directory'),
+           $fotoFileName
+                  );
 
             $date = new DateTime('now');
             $project->setDateCreate($date);
 
+            $project->setFoto($fotoFileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -56,6 +67,7 @@ class ProjectController extends Controller
         return $this->render('project/new.html.twig', array('project_new' => $form->createView()));
     }
 
+
     /**
      * @Route("/project/{id}/edit/", name="project-edit")
      */
@@ -64,7 +76,7 @@ class ProjectController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Project');
 
         $project = $repository->find($id);
-        $form = $this->createForm(ProjectType::class, $project);
+        $form = $this->createForm(EditProjectType::class, $project);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -140,13 +152,13 @@ class ProjectController extends Controller
     }
 
     /**
-     * @Route("/project/{id}/admin/", name="project-admin")
+     * @Route("/project/{project_id}/admin/", name="project-admin")
      */
-    public function infoAdminAction($id)
+    public function infoAdminAction($project_id)
     {
         $em = $this->getDoctrine()->getRepository(Project::class);
 
-        $project = $em->find($id);
+        $project = $em->find($project_id);
 
         return $this->render('project/info-admin.html.twig', array('project' => $project));
     }
