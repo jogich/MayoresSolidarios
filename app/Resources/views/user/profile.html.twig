@@ -37,7 +37,9 @@
                 </div>
                 <div class="row">
                     <article class="col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-xs-offset-5" style="margin-top:10px;">
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('user') }}" class="btn btn-primary">Volver</a>
+                        {% endif %}
                         {% if app.user.id == user_info.id %}
                         <a href="{{ path('user-edit',{ 'id': user_info.id }) }}" class="btn btn-primary">Actualizar</a>
                         {% endif %}

@@ -1,5 +1,6 @@
 <?php
 namespace AppBundle\Controller;
+use AppBundle\Form\RegisterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,7 +30,7 @@ class SecurityController extends Controller
     public function registerAction(Request $request)
     {
         $user = new User;
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(RegisterType::class, $user);
 
 
         $form->handleRequest($request);
@@ -44,7 +45,7 @@ class SecurityController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('security/register.html.twig', array('user_new' => $form->createView()));

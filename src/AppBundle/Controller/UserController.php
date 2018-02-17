@@ -24,6 +24,8 @@ class UserController extends Controller
 
         $users = $em->getRepository('AppBundle:User')->findAll();
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
+
         return $this->render('user/index.html.twig', array('users' => $users));
     }
 
@@ -36,6 +38,8 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         if ($form->isValid() && $form->isSubmitted()) {
 
@@ -89,6 +93,8 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede realizar esta acción.');
+
       try{
         $em = $this->getDoctrine()->getManager();
 
