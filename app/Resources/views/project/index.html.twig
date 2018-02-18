@@ -38,7 +38,6 @@
                     {% elseif is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('project-admin', { 'project_id': project.id }) }}" id="icons" class="fa fa-info-circle"></a>
                     {% endif %}
-                    <a href="" id="icons" class="fa fa-users"></a>
                     <a href="{{ path('project-edit', { 'id': project.id }) }}" id="icons" class="fa fa-edit"></a>
                     <a href="#" id="icons" class="fa fa-trash eliminar" data-id="{{project.id}}"></a>
                 </td>

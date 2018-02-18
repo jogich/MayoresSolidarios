@@ -1,43 +1,65 @@
 {% extends 'base.html.twig' %}
 {% block container %}
-    <div class="new_user">
-        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 ">
-             <div class="form-group">
-                 <div class="cols-sm-10">
-                     <div class="form-group row">
-                       <img src="http://placehold.it/500x300" alt="" width="300px" height="300px;">
-                     </div>
-                 </div>
-             </div>
-            <div class="form-group">
-                <div class="cols-sm-10">
-                    <div class="form-group row">
-                        {{ project.location }}
-                    </div>
-                </div>
-            </div>
+
+<style media="screen">
+    h1 {
+        color: #0e1a35;
+        text-shadow:0 0 2px black;
+        text-transform:capitalize;
+        line-height:1.2em;
+        margin:0 0 10px;
+    }
+    h3 {
+        color: #0e1a35;
+        text-shadow:0 0 2px #d3d3d3;
+        text-transform:capitalize;
+        line-height:1.2em;
+        margin:0 0 10px;
+    }
+</style>
+    <div class="row">
+        <div class="col-md-10" style="text-align:center;">
+            <h1>{{ project.title }}</h1>
         </div>
-        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 col-md-offset-1 col-sm-offset-1 col-lg-offset-1" style="padding-left:-5px;">
-            <div class="form-group">
-                <div class="cols-sm-10">
-                    <div class="form-group row">
-                        {{ project.description }}
-                    </div>
-                </div>
-            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset('img/project/'~ project.foto) }}" alt="" style="width:350px; border-radius:8px; margin-bottom:30px;">
+        </div>
+        <div class="col-md-6" id="boxes-info.project" style="word-break: break-all; word-wrap: break-word;"></div>
+    </div>
+    <h3>Descripción</h3> {{ project.description}}
+    <div class="row">
+        <div class="col-md-6" id="boxes-info.project">
+            <h3>Ubicación</h3> {{ project.location }}
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-12 col-xs-12">
+        <div class="col-md-6" id="boxes-info.project">
+            <h3>Socios máximos</h3> {{ project.maxMembers }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" id="boxes-info.project">
+            <h3>Socios actuales</h3> {{ project.actualMembers }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" id="boxes-info.project">
+            <h3>Fecha límite</h3> {{ project.dateExpiration|date('d-m-y') }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div id="button_info_project">
-                <a href="{{ path('project') }}" type="button" class="btn btn-default" >VOLVER</a>
+                <a href="{{ path('homepage') }}" type="button" class="btn btn-default" >VOLVER</a>
                 {% if exist == 0 %}
-                <a href="{{ path('user-project-add', {'user_id': app.user.id, 'project_id': project.id }) }}" style="margin-left:20px;" type="button" class="btn btn-success" >PARTICIPAR</a>
+                    <a href="{{ path('user-project-add', {'user_id': app.user.id, 'project_id': project.id }) }}" style="margin-left:20px;" type="button" class="btn btn-success" >DARSE DE ALTA</a>
                 {% else %}
-                <a href="{{ path('user-project-delete', {'user_id': app.user.id, 'project_id': project.id }) }}" style="margin-left:20px;" type="button" class="btn btn-danger" >BORRAR</a>
+                    <a href="{{ path('user-project-delete', {'user_id': app.user.id, 'project_id': project.id }) }}" style="margin-left:20px;" type="button" class="btn btn-danger" >DARSE DE BAJA</a>
                 {% endif %}
             </div>
         </div>
     </div>
-
 {% endblock %}
