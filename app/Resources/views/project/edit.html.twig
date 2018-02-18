@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block container %}
+    <style>
+        #appbundle_project_description {
+            height: 350px;
+        }
+    </style>
 <div class="new_project">
     {{ form_start(project_edit) }}
     <div class="row">
@@ -34,6 +39,26 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="col-sm-12 col-xs-12">
+                    <div id="titles">
+                        {{ form_label(project_edit.location, null, { 'label_attr':{ 'class': 'col-form-label' }}) }}
+                    </div>
+                    <div class="col-sm-12">
+                        {{ form_widget(project_edit.location, {'attr':{'class':'form-control' }}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12 col-xs-12">
+                    <div id="titles">
+                        {{ form_label(project_edit.date_expiration, null, { 'label_attr':{ 'class': 'col-form-label' }}) }}
+                    </div>
+                    <div class="col-sm-12">
+                        {{ form_widget(project_edit.date_expiration) }}
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-xs-12" >
@@ -44,26 +69,6 @@
                         </div>
                         <div class="col-sm-12">
                             {{ form_widget(project_edit.description, {'attr':{'class':'form-control' }}) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 col-xs-12">
-                        <div id="titles">
-                            {{ form_label(project_edit.location, null, { 'label_attr':{ 'class': 'col-form-label' }}) }}
-                        </div>
-                        <div class="col-sm-12">
-                            {{ form_widget(project_edit.location, {'attr':{'class':'form-control' }}) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 col-xs-12">
-                        <div id="titles">
-                            {{ form_label(project_edit.date_expiration, null, { 'label_attr':{ 'class': 'col-form-label' }}) }}
-                        </div>
-                        <div class="col-sm-12">
-                            {{ form_widget(project_edit.date_expiration) }}
                         </div>
                     </div>
                 </div>
