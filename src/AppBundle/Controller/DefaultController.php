@@ -28,4 +28,12 @@ class DefaultController extends Controller
                'all_items' => $projectQueryComplet
            ) );
     }
+
+    /**
+     * @Route("/landing", name="homepage")
+     */
+    public function landingAction()
+    {
+        return $this->render('default/landing.html.twig');
+    }
 }
