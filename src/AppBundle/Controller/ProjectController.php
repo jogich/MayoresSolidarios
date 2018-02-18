@@ -155,7 +155,7 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getRepository(Project::class);
 
         $project = $em->find($project_id);
-
+        
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         return $this->render('project/info-admin.html.twig', array('project' => $project));

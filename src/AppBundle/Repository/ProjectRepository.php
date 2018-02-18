@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+
+
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * ProjectRepository
  *
@@ -17,5 +20,21 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
        $allProjects = count($query);
 
        return $allProjects;
+    }
+    public function allProjects($currentPage = 1, $limit = 4)
+    {
+        // Create our query
+        $query = $this->createQueryBuilder('p')
+            ->getQuery();
+        $paginator = $this->pageProject($query, $currentPage, $limit);
+        return array('paginator' => $paginator, 'query' => $query);
+    }
+    public function pageProject($dql, $page = 1, $limit = 4)
+    {
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1)) // Offset
+            ->setMaxResults($limit); // Limit
+        return $paginator;
     }
 }
