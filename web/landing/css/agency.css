@@ -75,6 +75,9 @@ img::-moz-selection {
 #mainNav {
   background-color: #212529;
 }
+nav#mainNav {
+    background-color: #414445eb;
+}
 
 #mainNav .navbar-toggler {
   font-size: 12px;
