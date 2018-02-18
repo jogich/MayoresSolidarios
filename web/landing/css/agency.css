@@ -8,15 +8,15 @@ p {
 }
 
 a {
-  color: #fed136;
+  color:  #337ab7;
 }
 
 a:hover {
-  color: #fec503;
+  color: #09487e;
 }
 
 .text-primary {
-  color: #fed136 !important;
+  color: #09487e !important;
 }
 
 h1,
@@ -73,10 +73,10 @@ img::-moz-selection {
 }
 
 #mainNav {
-  background-color: #212529;
+  background-color: rgba(14, 26, 54, 0.83);
 }
 nav#mainNav {
-    background-color: #414445eb;
+    background-color: rgba(14, 26, 54, 0.83);
 }
 
 #mainNav .navbar-toggler {
@@ -86,18 +86,18 @@ nav#mainNav {
   text-transform: uppercase;
   color: white;
   border: 0;
-  background-color: #fed136;
+  background-color: #09487e;
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #mainNav .navbar-brand {
-  color: #fed136;
+  color: white;
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
 }
 
 #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-  color: #fec503;
+  color: #337ab7;
 }
 
 #mainNav .navbar-nav .nav-item .nav-link {
@@ -105,12 +105,12 @@ nav#mainNav {
   font-weight: 400;
   padding: 0.75em 0;
   letter-spacing: 1px;
-  color:  #fad557;
+  color:  white;
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #ffc600;
+  color: #337ab7;
 }
 
 @media (min-width: 992px) {
@@ -133,9 +133,10 @@ nav#mainNav {
     padding: 1.1em 1em !important;
   }
   #mainNav.navbar-shrink {
+    color: #337ab7;
     padding-top: 0;
     padding-bottom: 0;
-    background-color: #212529cf;
+    background-color: rgba(14, 26, 54, 0.83);
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
@@ -343,10 +344,10 @@ header.masthead .intro-text .intro-heading {
   height: 80px;
   margin-left: 0;
   text-align: center;
-  color: white;
-  border: 7px solid #e9ecef;
+  color: #337ab7;
+  border: 7px solid #594f4f;
   border-radius: 100%;
-  background-color: #fed136;
+  background-color: #0e1a35;
 }
 
 .timeline > li .timeline-image h4 {
@@ -646,5 +647,5 @@ ul.social-buttons li a {
 }
 
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
-  background-color: #fed136;
+  background-color: #09487e;
 }
