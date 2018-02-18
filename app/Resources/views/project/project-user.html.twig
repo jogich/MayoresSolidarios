@@ -12,6 +12,7 @@
                 <th>Decripción</th>
                 <th>Fecha creación</th>
                 <th>Fecha de expiración</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,9 @@
                 <td>{{ project.description }}</td>
                 <td>{{ project.dateCreate | date('d/m/Y') }}</td>
                 <td>{{ project.dateExpiration | date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('project-user', { 'project_id': project.id, 'user_id': app.user.id }) }}" id="icons" class="fa fa-info-circle"></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
