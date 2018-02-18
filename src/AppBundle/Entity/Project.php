@@ -91,6 +91,11 @@ class Project
     private $user_id;
 
     /**
+     * @ORM\Column(name="users", type="simple_array", nullable=true)
+     */
+    private $users = array();
+
+    /**
      * Get id
      *
      * @return integer
@@ -324,5 +329,29 @@ class Project
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * Set users
+     *
+     * @param array $users
+     *
+     * @return Project
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

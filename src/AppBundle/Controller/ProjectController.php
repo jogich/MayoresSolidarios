@@ -134,16 +134,22 @@ class ProjectController extends Controller
     public function infoUserAction($project_id, $user_id)
     {
 
-        $exist = 2;
+        $exist = 0;
         $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
-        if ($user->getRelation() == 0)
-        {
+        $users = $project->getUsers();
+
+        if ($users == null) {
             $exist = 0;
         } else {
-            $exist = 1;
+            foreach ($users as $value) {
+                if ($value == $user_id) {
+                    $exist = 1;
+                }
+            }
         }
+
         return $this->render('project/info-user.html.twig', array('project' => $project, 'exist' => $exist));
     }
 

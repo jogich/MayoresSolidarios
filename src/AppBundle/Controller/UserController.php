@@ -139,8 +139,29 @@ class UserController extends Controller
         $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
+        $actual_members = $project->getActualMembers();
+        $project->setActualMembers($actual_members+1);
+
+        $users = $project->getUsers();
+
+        if ($users == null) {
+            array_push($users,$user_id);
+            $project->setUsers($users);
+        } else {
+            foreach ($users as $value) {
+                if ($value == $user_id) {
+
+                } else {
+                    array_push($users,$user_id);
+                    $project->setUsers($users);
+                }
+            }
+        }
+
+        $em->persist($project);
+        $em->flush();
+
         $user->addProjectId($project);
-        $user->setRelation(1);
 
         $em->persist($user);
         $em->flush();
@@ -161,7 +182,25 @@ class UserController extends Controller
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
         $user->removeProjectId($project);
-        $user->setRelation(0);
+
+        $users = $project->getUsers();
+
+        foreach ($users as $key => $value)
+        {
+            if ($value == $user_id){
+                $k = $key;
+            }
+        }
+
+        unset($users[$k]);
+
+        $project->setUsers($users);
+
+        $actual_members = $project->getActualMembers();
+        $project->setActualMembers($actual_members-1);
+
+        $em->persist($project);
+        $em->flush();
 
         $em->persist($user);
         $em->flush();
