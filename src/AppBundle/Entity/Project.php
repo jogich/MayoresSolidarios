@@ -39,7 +39,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=10000)
+     * @ORM\Column(name="description", type="text", length=10000)
      */
     private $description;
 
@@ -79,21 +79,22 @@ class Project
     private $date_expiration;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="interestedPeople", type="integer", nullable=true)
-     */
-    private $interestedPeople;
-
-    /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="project_id")
      */
     private $user_id;
 
     /**
+
      * @ORM\Column(name="users", type="simple_array", nullable=true)
      */
     private $users = array();
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foto", type="string", length=255)
+     */
+    private $foto;
 
     /**
      * Get id
@@ -353,5 +354,27 @@ class Project
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return Project
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+        return $this;
+    }
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
     }
 }

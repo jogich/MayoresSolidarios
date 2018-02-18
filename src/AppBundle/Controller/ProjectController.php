@@ -10,6 +10,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
+use AppBundle\Form\EditProjectType;
 use AppBundle\Entity\userProjectRelation;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -38,17 +39,31 @@ class ProjectController extends Controller
     public function newAction(Request $request)
     {
         $project = new Project();
+
         $form = $this->createForm(ProjectType::class, $project);
 
+        $urlFoto="";
+
+        $urlFoto=$project->getFoto();
+
+        $project->setFoto(null);
         $form->handleRequest($request);
 
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+           $project = $form->getData();
 
-            $date = new DateTime('now');
-            $project->setDateCreate($date);
+           $fotoFile = $project->getFoto();
+           $fotoFileName = md5(uniqid()).'.'.$fotoFile->guessExtension();
+           $fotoFile->move(
+           $this->getParameter('foto_directory'), $fotoFileName);
+
+           $project->setFoto($fotoFileName);
+
+           $date = new DateTime('now');
+           $project->setDateCreate($date);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
@@ -68,7 +83,7 @@ class ProjectController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Project');
 
         $project = $repository->find($id);
-        $form = $this->createForm(ProjectType::class, $project);
+        $form = $this->createForm(EditProjectType::class, $project);
 
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
@@ -161,7 +176,7 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getRepository(Project::class);
 
         $project = $em->find($project_id);
-        
+
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         return $this->render('project/info-admin.html.twig', array('project' => $project));
