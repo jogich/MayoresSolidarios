@@ -143,7 +143,7 @@ img::-moz-selection {
 header.masthead {
   text-align: center;
   color:#ffa022;
-  background-image: url("/img/foto2.jpg");
+  /* background-image: url("/img/foto2.jpg"); */
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;

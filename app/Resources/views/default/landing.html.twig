@@ -59,11 +59,14 @@
 
     <!-- Header -->
     <header class="masthead">
-      <div class="container">
+      <img class="mySlides" src="{{ asset('img/foto1.jpg') }}" style="width:100%; height:700px; opacity:0.7">
+      <img class="mySlides" src="{{ asset('img/foto2.jpg') }}" style="width:100%; height:700px; opacity:0.7">
+      <div class="container" style="position:absolute; top:-80px; left:10%;">
         <div class="intro-text">
           <div class="intro-heading text-uppercase">  Bienvenidos a Cooperativas Solidarias! </div>
-          <div class="intro-lead-in">Ayúdanos a crear una sociedad más colaborativa.
-Creamos cooperativas a partir de proyectos ofertados sobre suelo público. Viviendas adaptadas a nuestras necesidades.</div>
+          <div class="intro-lead-in" style="background-color:rgba(78, 78, 78, 0.70); padding:5px; border:1px solid rgb(230, 167, 26);">
+            Ayúdanos a crear una sociedad más colaborativa.
+            Creamos cooperativas a partir de proyectos ofertados sobre suelo público. Viviendas adaptadas a nuestras necesidades.</div>
         </div>
       </div>
     </header>
@@ -320,7 +323,22 @@ Creamos cooperativas a partir de proyectos ofertados sobre suelo público. Vivie
         </article>
       </div>
     </footer>
+    <script>
+      var myIndex = 0;
+      carousel();
 
+      function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+          }
+          myIndex++;
+          if (myIndex > x.length) {myIndex = 1}
+          x[myIndex-1].style.display = "block";
+          setTimeout(carousel, 7000); // Change image every 2 seconds
+      }
+  </script>
 
 
 
