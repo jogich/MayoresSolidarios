@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Doctrine\DBAL\Types\IntegerType;
 
 class RegisterType extends AbstractType
 {
@@ -40,7 +41,7 @@ class RegisterType extends AbstractType
                     'years' => range(1918, 2018),
                     'format' => 'dd-MM-yyyy'
                 ])
-            ->add('phoneNumber', TextType::class,
+            ->add('phoneNumber', IntegerType::class,
                 ['label' => 'Número de teléfono'])
             ->add('address', TextType::class,
                 ['label' => 'Dirección']);
