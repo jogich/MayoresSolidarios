@@ -105,6 +105,16 @@ class User implements UserInterface
     private $relation;
 
     /**
+     * @ORM\Column(name="date_create", type="datetime", nullable=true)
+     */
+    private $date_create;
+
+    /**
+     * @ORM\Column(name="date_update", type="datetime", nullable=true)
+     */
+    private $date_update;
+
+    /**
      * Get id
      *
      * @return int
@@ -361,5 +371,53 @@ class User implements UserInterface
     public function getRelation()
     {
         return $this->relation;
+    }
+
+    /**
+     * Set dateCreate
+     *
+     * @param \DateTime $dateCreate
+     *
+     * @return User
+     */
+    public function setDateCreate($dateCreate)
+    {
+        $this->date_create = $dateCreate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreate
+     *
+     * @return \DateTime
+     */
+    public function getDateCreate()
+    {
+        return $this->date_create;
+    }
+
+    /**
+     * Set dateUpdate
+     *
+     * @param \DateTime $dateUpdate
+     *
+     * @return User
+     */
+    public function setDateUpdate($dateUpdate)
+    {
+        $this->date_update = $dateUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUpdate
+     *
+     * @return \DateTime
+     */
+    public function getDateUpdate()
+    {
+        return $this->date_update;
     }
 }

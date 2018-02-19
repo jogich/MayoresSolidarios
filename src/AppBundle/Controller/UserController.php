@@ -11,6 +11,7 @@ use AppBundle\Form\UserType;
 use AppBundle\Entity\Project;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class UserController extends Controller
 {
@@ -22,6 +23,8 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findAll();
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         return $this->render('user/index.html.twig', array('users' => $users));
     }
@@ -36,12 +39,18 @@ class UserController extends Controller
 
         $form->handleRequest($request);
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
+
         if ($form->isValid() && $form->isSubmitted()) {
 
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPlainPassword());
 
             $user->setPassword($password);
             $user->setRoles(array('ROLE_USER'));
+
+            $date = new \DateTime('now');
+            $user->setDateCreate($date);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -59,12 +68,15 @@ class UserController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
 
-        $user = $repository->findOneById($id);
+        $user = $repository->find($id);
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted())
         {
+            $date = new \DateTime('now');
+            $user->setDateUpdate($date);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -81,10 +93,12 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede realizar esta acción.');
+
       try{
         $em = $this->getDoctrine()->getManager();
 
-        $user = $em->getRepository('AppBundle:User')->findOneById($id);
+        $user = $em->getRepository('AppBundle:User')->find($id);
 
         $em->remove($user);
         $em->flush();
@@ -125,8 +139,29 @@ class UserController extends Controller
         $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
+        $actual_members = $project->getActualMembers();
+        $project->setActualMembers($actual_members+1);
+
+        $users = $project->getUsers();
+
+        if ($users == null) {
+            array_push($users,$user_id);
+            $project->setUsers($users);
+        } else {
+            foreach ($users as $value) {
+                if ($value == $user_id) {
+
+                } else {
+                    array_push($users,$user_id);
+                    $project->setUsers($users);
+                }
+            }
+        }
+
+        $em->persist($project);
+        $em->flush();
+
         $user->addProjectId($project);
-        $user->setRelation(1);
 
         $em->persist($user);
         $em->flush();
@@ -147,7 +182,25 @@ class UserController extends Controller
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
         $user->removeProjectId($project);
-        $user->setRelation(0);
+
+        $users = $project->getUsers();
+
+        foreach ($users as $key => $value)
+        {
+            if ($value == $user_id){
+                $k = $key;
+            }
+        }
+
+        unset($users[$k]);
+
+        $project->setUsers($users);
+
+        $actual_members = $project->getActualMembers();
+        $project->setActualMembers($actual_members-1);
+
+        $em->persist($project);
+        $em->flush();
 
         $em->persist($user);
         $em->flush();

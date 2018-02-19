@@ -79,16 +79,15 @@ class Project
     private $date_expiration;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="interestedPeople", type="integer", nullable=true)
-     */
-    private $interestedPeople;
-
-    /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="project_id")
      */
     private $user_id;
+
+    /**
+
+     * @ORM\Column(name="users", type="simple_array", nullable=true)
+     */
+    private $users = array();
 
     /**
      * @var string
@@ -96,28 +95,6 @@ class Project
      * @ORM\Column(name="foto", type="string", length=255)
      */
     private $foto;
-
-    /**
-     * Set foto
-     *
-     * @param string $foto
-     *
-     * @return Project
-     */
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-        return $this;
-    }
-    /**
-     * Get foto
-     *
-     * @return string
-     */
-    public function getFoto()
-    {
-        return $this->foto;
-    }
 
     /**
      * Get id
@@ -353,5 +330,51 @@ class Project
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * Set users
+     *
+     * @param array $users
+     *
+     * @return Project
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return Project
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+        return $this;
+    }
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
     }
 }

@@ -1,4 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}<div class="row">
+        <div class="form-group col-sm-12 col-xs-12">
+            <div id="button_create_project">
+                <button  type="submit" class="btn btn-success">CREAR</button>
+            </div>
+        </div>
+    </div>
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('datatables/datatables-plugins/dataTables.bootstrap.css') }}">
@@ -12,6 +18,7 @@
                 <th>Decripción</th>
                 <th>Fecha creación</th>
                 <th>Fecha de expiración</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +28,9 @@
                 <td>{{ project.description }}</td>
                 <td>{{ project.dateCreate | date('d/m/Y') }}</td>
                 <td>{{ project.dateExpiration | date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('project-user', { 'project_id': project.id, 'user_id': app.user.id }) }}" id="icons" class="fa fa-info-circle"></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

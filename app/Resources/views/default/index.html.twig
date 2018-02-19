@@ -1,8 +1,48 @@
-{% extends 'base.html.twig' %}
-{% block userWelcome %}{% endblock %}
-{% block userName %}{% endblock %}
-{% block count_notification %}{{ count_Notification }}{% endblock %}
-{% block email %}{% endblock %}
-{% block headline %}{% endblock %}
-{% block body %}
+{% extends 'base2.html.twig' %}
+{% block container %}
+    <div class="row">
+        {% for row in project %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('project-admin', { 'project_id': row.id} ) }}">
+                    <article class="color1contenido col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ">
+                        <div class="gallery-project">
+                            <img src="{{ asset('img/project/'~ row.foto) }}" alt="{{ row.title }}" style="width: 100%; height: 450px;" class="img-fluid">
+                            <div class="desc-project">{{ row.title }}</div>
+                            <div class="desc-project">{{ row.dateCreate|date('d-m-y') }}</div>
+                        </div>
+                    </article>
+                </a>
+            {% elseif is_granted('ROLE_USER') %}
+                <a href="{{ path('project-user', { 'project_id': row.id,  'user_id':app.user.id} ) }}">
+                    <article class="color1contenido col-xs-12 col-sm-6 col-md-5 col-md-offset-1 ">
+                        <div class="gallery-project">
+                            <img src="http://conceptodefinicion.de/wp-content/uploads/2016/03/Fabrica.jpg" alt="{{ row.title }}" class="img-fluid">
+                            <div class="desc-project">{{ row.title }}</div>
+                            <div class="desc-project">{{ row.dateCreate|date('d-m-y') }}</div>
+                        </div>
+                    </article>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        <article class="col-md-offset-5 col-lg-offset-6 col-sm-offset-5 col-xs-offset-5">
+            {% if maxPages > 1 %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {%if thisPage > 1 %}
+                            <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: thisPage-1 < 1 ? 1 : thisPage-1}) }}">Anterior</a></li>
+                        {% endif %}
+                        {% for i in 1..maxPages %}
+                            <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: i}) }}">{{ i }}</a></li>
+                        {% endfor %}
+                        {%if thisPage < maxPages %}
+                            <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">Siguiente</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </article>
+    </div>
+    <br>
 {% endblock %}

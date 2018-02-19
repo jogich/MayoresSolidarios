@@ -14,3 +14,5 @@
 !var/SymfonyRequirements.php
 /web/bundles/
 /vendor/
+/web/app.php
+/app/config/parameters.yml

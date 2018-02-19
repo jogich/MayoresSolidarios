@@ -28,6 +28,8 @@ class ProjectController extends Controller
 
         $project = $em->getRepository('AppBundle:Project')->findAll();
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
+
         return $this->render('project/index.html.twig', array('projects' => $project));
     }
 
@@ -36,27 +38,33 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request)
     {
-        $urlFoto="";
         $project = new Project();
+
         $form = $this->createForm(ProjectType::class, $project);
+
+        $urlFoto="";
+
         $urlFoto=$project->getFoto();
+
         $project->setFoto(null);
         $form->handleRequest($request);
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
            $project = $form->getData();
+
            $fotoFile = $project->getFoto();
            $fotoFileName = md5(uniqid()).'.'.$fotoFile->guessExtension();
            $fotoFile->move(
-           $this->getParameter('foto_directory'),
-           $fotoFileName
-                  );
+           $this->getParameter('foto_directory'), $fotoFileName);
 
-            $date = new DateTime('now');
-            $project->setDateCreate($date);
+           $project->setFoto($fotoFileName);
 
-            $project->setFoto($fotoFileName);
+           $date = new DateTime('now');
+           $project->setDateCreate($date);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
@@ -67,7 +75,6 @@ class ProjectController extends Controller
         return $this->render('project/new.html.twig', array('project_new' => $form->createView()));
     }
 
-
     /**
      * @Route("/project/{id}/edit/", name="project-edit")
      */
@@ -77,6 +84,8 @@ class ProjectController extends Controller
 
         $project = $repository->find($id);
         $form = $this->createForm(EditProjectType::class, $project);
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -98,6 +107,8 @@ class ProjectController extends Controller
      */
     public function deleteAction($id)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
+
       try{
         $em = $this->getDoctrine()->getManager();
 
@@ -138,16 +149,22 @@ class ProjectController extends Controller
     public function infoUserAction($project_id, $user_id)
     {
 
-        $exist = 2;
+        $exist = 0;
         $project = $this->getDoctrine()->getManager()->getRepository(Project::class)->find(intval($project_id));
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find(intval($user_id));
 
-        if ($user->getRelation() == 0)
-        {
+        $users = $project->getUsers();
+
+        if ($users == null) {
             $exist = 0;
         } else {
-            $exist = 1;
+            foreach ($users as $value) {
+                if ($value == $user_id) {
+                    $exist = 1;
+                }
+            }
         }
+
         return $this->render('project/info-user.html.twig', array('project' => $project, 'exist' => $exist));
     }
 
@@ -160,7 +177,8 @@ class ProjectController extends Controller
 
         $project = $em->find($project_id);
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No puede acceder a esta página.');
+
         return $this->render('project/info-admin.html.twig', array('project' => $project));
     }
-
 }

@@ -5,21 +5,27 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Project;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{currentPage}", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function showProjectsAction($currentPage = 1)
     {
-        $repository1 = $this->getDoctrine()->getManager()->getRepository('AppBundle:Notification');
-        $repository2 = $this->getDoctrine()->getManager()->getRepository('AppBundle:User');
+        $limit=4;
+        $repository = $this->getDoctrine()->getRepository(Project::class);
+        $projects = $repository->allProjects($currentPage, $limit);
+         $projectResult = $projects['paginator'];
+         $projectQueryComplet =  $projects['query'];
 
-        $notification = $repository1->countNotifications();
-        $test = $repository2->countUsers();
-
-        return $this->render('default/index.html.twig', array('count_Notification' => $notification, 'count_Users' => $test));
+         $maxPages = ceil($projects['paginator']->count() / $limit);
+         return $this->render('default\index.html.twig', array(
+               'project' => $projectResult,
+               'maxPages'=>$maxPages,
+               'thisPage' => $currentPage,
+               'all_items' => $projectQueryComplet
+           ) );
     }
-
 }

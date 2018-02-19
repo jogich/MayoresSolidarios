@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Cooperativas Solidarias{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
@@ -26,11 +26,12 @@
             <div class="navi">
                 <ul>
                     {% if is_granted('ROLE_ADMIN') %}
-                    <li class="active"><a href="{{ path('user') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Usuarios</span></a></li>
-                    <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Proyectos</span></a></li>
+                        <li class="active"><a href="{{ path('user') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Usuarios</span></a></li>
+                        <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Proyectos</span></a></li>
+                        <li><a href="{{ path('user-profile', { 'email': app.user.email }) }}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
                     {% elseif is_granted('ROLE_USER') %}
-                    <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
-                    <li><a href=""><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
+                        <li><a href="{{ path('user-project', { 'id': app.user.id }) }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
+                        <li><a href="{{ path('user-profile', { 'email': app.user.email }) }}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -58,37 +59,10 @@
                         <div class="header-rightside">
                             <ul class="list-inline header-top pull-right" >
                                 {% if app.user %}
-                                <li><p class="text-muted">Bienvenido {{ app.user.name }} {{ app.user.surname }}</p></li>
+                                    <li style="margin-right: 15px"><p class="text-muted">Bienvenido {{ app.user.name }} {{ app.user.surname }}</p></li>
                                 {% endif %}
-                                <li>
-                                    <!-- Notificaciones -->
-                                    <a href="#" class="icon-info">
-                                        <i class="fa fa-bell" aria-hidden="true"></i>
-                                        <span class="label label-primary">{% block count_notification %}{% endblock %}</span><!-- Aqui seleccionamos el numero de notificaciones que tiene el usuario -->
-                                    </a>
-                                </li>
                                 <!-- dropdown de perfil de usuario -->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="user">
-                                        <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <div class="navbar-content" style="margin-left:15px;">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/HP_logo_630x630.png" alt="user"></a><br>
-                                                <span>{% block userName %}{% endblock %}</span>
-                                                <p class="text-muted small">
-                                                  <div style="width:100px;"></div>
-
-                                                </p>
-                                                <div class="divider"></div>
-
-                                                {% if app.user %}<a href="{{ path('user-profile', { 'email': app.user.username }) }}" class="btn btn-info" style="margin-bottom:-15px;">Perfil</a>{% endif %}
-                                                <hr>
-                                                <a href="{{ path('logout') }}" class="btn btn-danger" style="margin-top:-15px;">Salir</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <a href="{{ path('logout') }}" class="text-muted" tyle="margin-top:-15px;"><i class="fa fa-sign-out" style="font-size:15px;color: rgb(119, 119, 119);"></i> Salir</a>
                             </ul>
                         </div>
                     </div>
@@ -108,9 +82,11 @@
     </div>
 </div>
 {% block javascripts %}
+
     <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('bootstrap/js/plugin.js') }}"></script>
+
 {% endblock %}
 </body>
 </html>
