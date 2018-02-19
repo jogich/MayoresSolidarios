@@ -1,13 +1,94 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Cooperativas Solidarias{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
+    {% endblock %}
+</head>
+<body>
+<div class="container-fluid display-table" >
+    <div class="row display-table-row">
+        <!-- barra de navegacion -->
+        <nav class="col-md-2 col-sm-1 hidden-xs display-table-cell  box" id="navigation">
+            <div class="logo">
+                <a href="{{ path('homepage') }}"><img src="{{ asset('img/LogoMS.png') }}" alt="merkery_logo" class="hidden-xs hidden-sm">
+                    <img src="" alt="merkery_logo" class="visible-xs visible-sm circle-logo">
+                </a>
+            </div>
+            <div class="navi">
+                <ul>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="active"><a href="{{ path('user') }}"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Usuarios</span></a></li>
+                    <li><a href="{{ path('project') }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Proyectos</span></a></li>
+                        <li><a href="{{ path('user-profile', { 'email': app.user.email }) }}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <li><a href="{{ path('user-project', { 'id': app.user.id }) }}"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Tus proyectos</span></a></li>
+                    <li><a href="{{ path('user-profile', { 'email': app.user.email }) }}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mi Perfil</span></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="col-md-10 col-sm-11 display-table-cell ">
+            <!-- Barra de nevegacion vertical -->
+            <div class="row">
+                <header>
+                    <div class="col-md-1">
+                        <nav class="navbar-default pull-left">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed float:left;" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-5">
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="header-rightside">
+                            <ul class="list-inline header-top pull-right" >
+                                {% if app.user %}
+                                <li style="margin-right: 15px"><p class="text-muted">Bienvenido {{ app.user.name }} {{ app.user.surname }}</p></li>
+                                {% endif %}
+                                <!-- dropdown de perfil de usuario -->
+                                <a href="{{ path('logout') }}" class="text-muted" tyle="margin-top:-15px;"><i class="fa fa-sign-out" style="font-size:15px;color: rgb(119, 119, 119);"></i> Salir</a>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <!-- contenido de nuestra pagina -->
+            <section class="user-dashboard">
+                <h1>{% block headline %}{% endblock %}</h1>
+                <div class="row">
+                    <article class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                        <div style="margin-bottom: 20px;">{% block button %}{% endblock %}</div>
+                        <div class="sales">
+                            {% block container %}{% endblock %}
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+
+    <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/plugin.js') }}"></script>
+
+{% endblock %}
+</body>
 </html>

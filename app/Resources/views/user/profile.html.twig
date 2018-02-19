@@ -1,0 +1,51 @@
+{% extends 'base2.html.twig' %}
+{% block container %}
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Perfil</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <article class=" col-md-12 col-lg-12 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                            <tr>
+                                <td><b>Nombre</b>:</td>
+                                <td>{{ user_info.name }}</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td><b>Apellidos</b>:</td>
+                                <td>{{ user_info.surname }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Correo electrónico</b>:</td>
+                                <td>{{ user_info.email }}</td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td><b>Dirección</b>:</td>
+                                <td>{{ user_info.address }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Número de teléfono</b>:</td>
+                                <td>{{ user_info.phoneNumber }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </article>
+                </div>
+                <div class="row">
+                    <article class="col-md-offset-5 col-sm-offset-5 col-lg-offset-5 col-xs-offset-5" style="margin-top:10px;">
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('user') }}" class="btn btn-primary">Volver</a>
+                        {% endif %}
+                        {% if app.user.id == user_info.id %}
+                        <a href="{{ path('user-edit',{ 'id': user_info.id }) }}" class="btn btn-primary">Actualizar</a>
+                        {% endif %}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}

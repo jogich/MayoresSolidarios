@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <div class="row main">
+        <div class="main-register main-center" style="margin-top:5%; border-radius:5px; width:650px;">
+            <h2>Registro</h2>
+                {{ form_start(user_new) }}
+            <div style="border-top:2px solid #e7e2e2; padding: 5px;">
+                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.name, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.name, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.surname, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.surname, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.plainPassword.first, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                      {{ form_widget(user_new.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.plainPassword.second, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 col-md-offset-1" style="padding-left:-5px;">
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.email, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.email, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.phoneNumber, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.phoneNumber, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.address, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.address, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                {{ form_label(user_new.birthday, null, { 'label_attr':{ 'class': 'label-control' }}) }}
+                                {{ form_widget(user_new.birthday) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="padding-top:5px;">
+                <button type="submit" class="btn btn-primary btn-lg btn-block register-button visible-xs">Registrarse</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block register-button2 visible-md  visible-lg visible-sm">Registrarse</button>
+            </div>
+            <!-- <button type="submit">REGISTRARSE</button> -->
+            {{ form_end(user_new) }}
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/plugin.js') }}"></script>
+</body>
+</html>

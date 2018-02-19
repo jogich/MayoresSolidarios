@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('datatables/datatables-plugins/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('datatables/datatables-responsive/dataTables.responsive.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ asset('jquery/borrarFila.js') }}"></script>
+{% endblock %}
+{% block button %}
+    <a class="btn btn-primary btn-lg" style="font-size: 15px;" href="{{ path('user-new') }}">Crear usuario</a>
+{% endblock %}
+{% block container %}
+  <div class="alert alert-warning " style="display:none;">
+    <strong>Alerta!</strong> No se ha podido eliminar en el servidor, Contacte con el Administrador o fallo su conexion de Internet.
+  </div>
+        <table class="table" id="dataTables">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Correo electrónico</th>
+                    <th>Fecha de nacimiento</th>
+                    <th></th>
+                </tr>
+            </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.surname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.birthday | date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('user-profile', {'email': user.email }) }}" id="icons" class="fa fa-user"></a>
+                    <a href="{{ path('user-edit', { 'id': user.id }) }}" id="icons" class="fa fa-edit"></a>
+                    <a href="#" id="icons" class="fa fa-trash eliminar" data-id="{{ user.id }}"></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('datatables/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('datatables/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('datatables/datatables-responsive/dataTables.responsive.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTables').DataTable({
+                responsive: true,
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Ningún dato disponible en esta tabla",
+                    "info":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "infoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Mostrar _MENU_ registros",
+                    "loadingRecords": "Cargando...",
+                    "processing":     "Procesando...",
+                    "search":         "Buscar:",
+                    "zeroRecords":    "No se encontraron resultados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "aria": {
+                        "sortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
