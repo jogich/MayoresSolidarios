@@ -9,28 +9,23 @@ use AppBundle\Entity\Project;
 
 class DefaultController extends Controller
 {
+    
+
     /**
-     * @Route("/{currentPage}", name="homepage")
+     * @Route("/", name="homepage")
      */
-    public function showProjectsAction($currentPage = 1)
+    public function indexAction()
     {
         $limit=4;
         $repository = $this->getDoctrine()->getRepository(Project::class);
-        $projects = $repository->allProjects($currentPage, $limit);
-         $projectResult = $projects['paginator'];
-         $projectQueryComplet =  $projects['query'];
-
-         $maxPages = ceil($projects['paginator']->count() / $limit);
+        $project = $repository->findAll();
+        
          return $this->render('default\index.html.twig', array(
-               'project' => $projectResult,
-               'maxPages'=>$maxPages,
-               'thisPage' => $currentPage,
-               'all_items' => $projectQueryComplet
+               'project' => $project,
            ) );
     }
-
     /**
-     * @Route("/landing", name="homepage")
+     * @Route("/landing/", name="landing")
      */
     public function landingAction()
     {

@@ -25,24 +25,5 @@
             {% endif %}
         {% endfor %}
     </div>
-    <div class="row">
-        <article class="col-md-offset-5 col-lg-offset-6 col-sm-offset-5 col-xs-offset-5">
-            {% if maxPages > 1 %}
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        {%if thisPage > 1 %}
-                            <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: thisPage-1 < 1 ? 1 : thisPage-1}) }}">Anterior</a></li>
-                        {% endif %}
-                        {% for i in 1..maxPages %}
-                            <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: i}) }}">{{ i }}</a></li>
-                        {% endfor %}
-                        {%if thisPage < maxPages %}
-                            <li class="page-item"><a class="page-link" href="{{ path('homepage', {currentPage: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}">Siguiente</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            {% endif %}
-        </article>
-    </div>
     <br>
 {% endblock %}
